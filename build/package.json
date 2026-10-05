@@ -1,0 +1,13 @@
+{
+  "name": "ctres-spec",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Builds the CTRES v1.0 specification (universal edition) as a Word document",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "build": "node build_spec_universal.js ../CTRES_v1.0.docx"
+  },
+  "dependencies": {
+    "docx": "^9.5.0"
+  }
+}

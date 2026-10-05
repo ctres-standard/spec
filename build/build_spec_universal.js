@@ -62,12 +62,12 @@ const header = (w, h, pageW, pageH) => new Header({ children: [new Paragraph({ c
 const body = [];
 
 // ---------------- COVER ----------------
-body.push(new Paragraph({ spacing: { after: 240 }, children: [new TextRun({ text: 'DRAFT FOR CONSULTATION — AN OPEN STANDARD, NOT A PUBLICATION OF ANY REGULATORY AUTHORITY', font: FONT, size: 16, bold: true, color: 'C00000' })] }));
+body.push(new Paragraph({ spacing: { after: 240 }, children: [new TextRun({ text: 'DRAFT FOR CONSULTATION — AN INDEPENDENT OPEN STANDARD', font: FONT, size: 16, bold: true, color: 'C00000' })] }));
 body.push(new Paragraph({ spacing: { after: 80 }, children: [new TextRun({ text: 'Common Transaction Reporting and Evidence Standard', font: FONT, size: 44, bold: true, color: '1F3864' })] }));
 body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text: 'An open, rail-neutral format for evidencing payment flows in regulated gambling', font: FONT, size: 24, color: '404040' })] }));
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
-  ['Status', 'Draft for consultation. Carries no regulatory force and is not endorsed by any authority.'],
+  ['Status', 'Open draft for consultation with authorities and industry. An independent standard: it carries no regulatory force and creates no new obligations.'],
   ['Date', '2 October 2026 (revised for publication 5 October 2026)'],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
@@ -86,7 +86,7 @@ body.push(H1('Contents'));
  ['8.', 'Submission and access'], ['9.', 'Evidence pack'], ['10.', 'Conformance levels'], ['11.', 'Validation'],
  ['12.', 'Data protection, confidentiality and retention'], ['13.', 'Governance and versioning'], ['14.', 'Roadmap'],
  ['15.', 'Questions for authorities'],
- ['A.', 'Field catalogue'], ['B.', 'Indicative jurisdiction profiles'], ['C.', 'Example records'],
+ ['A.', 'Field catalogue'], ['B.', 'Jurisdiction profiles'], ['C.', 'Example records'],
  ['D.', 'Conformance declaration (template)'], ['E.', 'Glossary'], ['F.', 'Differences from the Curaçao edition']]
  .forEach(([n, t]) => body.push(new Paragraph({ spacing: { after: 60 }, indent: { left: 200 },
    children: [new TextRun({ text: n + '  ', font: FONT, size: 20, bold: true, color: '2E5496' }), new TextRun({ text: t, font: FONT, size: 20 })] })));
@@ -106,14 +106,14 @@ body.push(P('CTRES defines the shape of the evidence once and lets each jurisdic
 body.push(H2('1.2 What this Standard is not'));
 body.push(BUL('It creates no obligation. It formats evidence of duties that already exist under each jurisdiction’s law and licence conditions.'));
 body.push(BUL('It does not replace any authority’s central system, reporting portal or financial intelligence reporting schema, such as goAML, the FINTRAC reporting API, Infostat-UIF or SIGAP. It is the operator-side evidence layer from which those submissions can be produced (§7).'));
-body.push(BUL('It is not endorsed by any authority. Every reference to a jurisdiction’s rules is a reading of published sources, offered for correction.'));
+body.push(BUL('It is independent of any authority. Every reference to a jurisdiction’s rules is a reading of published sources, offered to the authority concerned for review.'));
 body.push(BUL('It names no vendor and requires none.'));
 body.push(BUL('It does not cover game outcomes, wagering records beyond their reference, marketing data or behavioural analytics.'));
 
 body.push(H2('1.3 Relation to the Curaçao edition'));
 body.push(P('The first edition of this Standard, prepared in September 2026, covered virtual assets only, under one jurisdiction’s crypto policy. This universal edition keeps its record model and makes three structural changes:'));
 body.push(BUL('Rail-neutral core. The record model describes any payment rail. Virtual assets become one rail module among seven (§6), and everything the Curaçao edition defined for them is kept.'));
-body.push(BUL('Jurisdiction profiles. Thresholds, windows, permitted rails, deadlines and retention periods are no longer written into the records; they are parameters of a profile (§5). Indicative profiles for sixty-seven jurisdictions are in Annex B.'));
+body.push(BUL('Jurisdiction profiles. Thresholds, windows, permitted rails, deadlines and retention periods are no longer written into the records; they are parameters of a profile (§5). Profiles for sixty-seven jurisdictions, researched from published sources, are in Annex B.'));
 body.push(BUL('Map, don’t replace. Each record carries the references that payment rails and regulators’ own systems issue, so a single source of truth can feed every submission (§7).'));
 body.push(P('The full list of differences is in Annex F.'));
 
@@ -273,7 +273,7 @@ body.push(P('R12 never carries the content of a suspicious transaction report. W
 
 // ---------------- 5 ----------------
 body.push(H1('5. Jurisdiction profiles'));
-body.push(P('A profile is a short configuration, in the machine-readable structure defined by the schema (Annex A), that turns the neutral record model into one authority’s rule set. It contains parameters only and never adds fields. The table lists the parameters, with examples drawn from the indicative profiles in Annex B.'));
+body.push(P('A profile is a short configuration, in the machine-readable structure defined by the schema (Annex A), that turns the neutral record model into one authority’s rule set. It contains parameters only and never adds fields. The table lists the parameters, with examples drawn from the profiles in Annex B.'));
 body.push(table(['Parameter', 'Examples from Annex B'], [
   ['Permitted rails and instrument types', 'Credit cards prohibited (United Kingdom, Ireland, Belgium, Brazil); credit in any form, including invoice and buy-now-pay-later (Sweden); virtual assets permitted with conditions (Malta, Isle of Man, Curaçao, Estonia) or not accepted (Italy, Greece, Germany, Brazil, Peru, Ontario)'],
   ['Holder and ownership rules', 'Instruments in the player’s name (Italy, Greece, Brazil, Buenos Aires Province); ownership confirmed above set amounts (Greece: deposits from €5,000, withdrawals from €800)'],
@@ -295,7 +295,7 @@ body.push(table(['Parameter', 'Examples from Annex B'], [
   ['Retention', '5 years in most jurisdictions; 7 years (Kenya, Malawi, Portugal); 10 years (Argentina, Serbia, Switzerland, Mexico; Italy, Greece, Spain and New Jersey for some records); tied to the tax limitation period (Bulgaria, Peru)'],
 ], [2900, 6846]));
 body.push(P('Profiles carry effective dates, so a new rule, a market opening or a change of regulator becomes a new profile version rather than an edit — Finland’s licensing from July 2027 and Latvia’s transfer of supervision to its tax authority are examples. Where a market is closed to online gambling, as in India and Kosovo, the profile covers payment-side blocking only.'));
-body.push(P('Profiles belong to the authorities. The editor publishes a profile as confirmed only when the authority concerned has reviewed it; until then it is marked indicative, as every profile in Annex B is today. Where a federal or provincial system has several licensing bodies, a profile may inherit from a shared base and override only what differs, so that provinces or states agree the common part once.'));
+body.push(P('Profiles belong to the authorities. The editor publishes a profile as confirmed only when the authority concerned has reviewed it; until then it is marked as researched from published sources, as every profile in Annex B is today. Where a federal or provincial system has several licensing bodies, a profile may inherit from a shared base and override only what differs, so that provinces or states agree the common part once.'));
 
 // ---------------- 6 ----------------
 body.push(H1('6. Rail modules'));
@@ -403,7 +403,7 @@ body.push(table(['Element', 'Arrangement'], [
 // ---------------- 14 ----------------
 body.push(H1('14. Roadmap'));
 body.push(table(['When', 'Step', 'Who'], [
-  ['Q4 2026', 'Authorities review their indicative profiles; corrections adopted as submitted', 'Authorities, editor'],
+  ['Q4 2026', 'Authorities review their profiles; corrections adopted as submitted', 'Authorities, editor'],
   ['Q1 2027', 'Pilots with volunteer operators across at least three rail mixes: cards and bank transfers; mobile money; virtual assets', 'Operators, editor'],
   ['Q2 2027', 'Version 1.1 with confirmed profiles, versioned mappings to existing formats, and the conformance suite versioned alongside', 'Editor'],
   ['From July 2027', 'Alignment review as the EU Anti-Money Laundering Regulation (EU) 2024/1624 begins to apply', 'Editor, with EU authorities'],
@@ -412,7 +412,7 @@ body.push(table(['When', 'Step', 'Who'], [
 // ---------------- 15 ----------------
 body.push(H1('15. Questions for authorities'));
 body.push(P('Each answer changes the Standard materially.'));
-body.push(BUL('Is the indicative profile for your jurisdiction in Annex B correct, and what is missing?'));
+body.push(BUL('Is the profile for your jurisdiction in Annex B correct, and what is missing?'));
 body.push(BUL('Which rails do you expect to permit, restrict or review over the next two years — in particular virtual assets and new instant-payment schemes?'));
 body.push(BUL('Would a common operator-side format reduce the cost of connecting operators to your central system or reporting channel?'));
 body.push(BUL('Which submission mode fits your supervision: continuous, periodic package, on demand, or a mix?'));
@@ -430,8 +430,8 @@ body.push(P('The extracts in §4 and §6 are sufficient to build a working imple
 // =====================================================================
 // ANNEX B — landscape section
 const bodyB = [];
-bodyB.push(H1('Annex B. Indicative jurisdiction profiles'));
-bodyB.push(P('Readings of published sources as at 2 October 2026, summarised to the parameters in §5 and grouped by region. They are not legal advice and have not been confirmed by any authority. “Not found” means that no published rule was located, not that none exists; “to be confirmed” marks a reading the sources did not settle. Each row is offered to the authority concerned for correction, and a corrected row replaces this one as submitted.', { size: 18 }));
+bodyB.push(H1('Annex B. Jurisdiction profiles'));
+bodyB.push(P('Readings of published sources as at 2 October 2026, summarised to the parameters in §5 and grouped by region. They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists; “to be confirmed” marks a reading the sources did not settle. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted.', { size: 18 }));
 const BW = [1750, 2900, 2550, 3050, 2028, 2400]; // sums to 14678
 // Annex B rows and sources live in annex_b_data.js, maintained by the editor and not published as data.
 // Without that file the build still succeeds and Annex B carries a placeholder paragraph.
@@ -514,7 +514,7 @@ bodyC.push(H1('Annex F. Differences from the Curaçao edition'));
 bodyC.push(table(['Area', 'Curaçao edition (September 2026)', 'This edition'], [
   ['Name', 'Crypto Transaction Reporting and Evidence Standard', 'Common Transaction Reporting and Evidence Standard; the short name CTRES is kept'],
   ['Scope', 'Virtual assets only', 'Every payment rail, through rail modules (§6)'],
-  ['Jurisdiction', 'One, with its rules written into the text', 'Any, through profiles (§5); sixty-seven indicative profiles (Annex B)'],
+  ['Jurisdiction', 'One, with its rules written into the text', 'Any, through profiles (§5); sixty-seven profiles researched from published sources (Annex B)'],
   ['R1', 'Wallet Inventory', 'Funds Location: any location type, protection mechanism, location jurisdiction'],
   ['R2', 'Player Wallet Link', 'Payment Instrument Link: holder match, funding type including invoice and buy-now-pay-later, issuer country, national-ID match, payout status'],
   ['R3, R4', 'On-chain fields at the core', 'Rail-neutral core; rail and authority references; tax lines; limit check; payout timing; closed-loop evidence'],

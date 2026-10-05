@@ -1,6 +1,6 @@
 ---
 name: Jurisdiction profile correction
-about: Correct an indicative jurisdiction profile in Annex B
+about: Correct a jurisdiction profile in Annex B
 title: "[Annex B] <jurisdiction>: "
 labels: profile-correction
 assignees: ''
@@ -12,7 +12,7 @@ own profile are adopted as submitted (§13). An authority may instead write to
 hello@ctres.org, preferably from an official address.
 
 Corrections from anyone else are reviewed as comments and must cite a published
-source; the profile remains indicative until the authority concerned has reviewed it.
+source; the profile is marked as authority-confirmed once the authority concerned has reviewed it.
 
 Issues are public: do not include confidential information or personal data.
 -->

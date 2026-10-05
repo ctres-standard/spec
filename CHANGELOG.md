@@ -2,6 +2,12 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — editorial revision, 5 October 2026 (release v1.0.1)
+
+- Status wording: CTRES is described as an independent open standard, published for consultation with authorities and industry.
+- Annex B is titled "Jurisdiction profiles"; profiles not yet reviewed by their authority are described as researched from published sources.
+- No change to the record model, fields or profile parameters.
+
 ## 1.0 — publication edits, 5 October 2026
 
 Edits made for the public release of version 1.0. The record model, the rail modules and the profiles in Annex B are unchanged.
@@ -51,7 +57,7 @@ The Standard is no longer tied to one jurisdiction or to virtual assets. The sho
 ### Jurisdiction profiles
 
 - New §5. Thresholds, aggregation windows, payout deadlines, retention periods and permitted rails are parameters of a jurisdiction profile rather than constants of the format.
-- New Annex B: indicative profiles for sixty-seven jurisdictions, grouped by region and read from published sources. None has yet been confirmed by the authority concerned.
+- New Annex B: profiles for sixty-seven jurisdictions, researched from published sources, grouped by region and offered to each authority for review.
 - The Curaçao profile in Annex B states the due-diligence threshold of NAf 4,000 per gaming day, the replacement of the Netherlands Antillean guilder by the Caribbean guilder (XCG) at 1:1, and the four transition steps of the crypto policy guideline.
 
 ### Mapping to existing formats

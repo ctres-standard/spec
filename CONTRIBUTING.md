@@ -16,7 +16,7 @@ Typographical corrections may also be proposed as a pull request against `build/
 
 ## Corrections to jurisdiction profiles
 
-The profiles in Annex B are readings of published sources and are marked indicative. Profiles belong to the authorities concerned (§5, §13).
+The profiles in Annex B are researched from published sources and offered to each authority for review. Profiles belong to the authorities concerned (§5, §13).
 
 - **An authority correcting its own profile** may use the **Jurisdiction profile correction** template, or write to hello@ctres.org, preferably from an official address. Corrections an authority makes to its own profile are adopted as submitted. The editor may ask for confirmation that the sender acts for the authority. Once the authority has reviewed its profile, the profile is published as confirmed.
 - **Anyone else** proposing a correction to a profile should use the same template and cite a published source. Such corrections are reviewed by the editor as comments, and the profile remains indicative until the authority concerned has reviewed it.

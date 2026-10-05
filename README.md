@@ -10,7 +10,7 @@ The Standard creates no obligation. It formats evidence of duties that already e
 
 ## Status
 
-Draft for consultation. The Standard carries no regulatory force and is not endorsed by any authority. Every reference to a jurisdiction's rules is a reading of published sources, offered for correction. Every profile in Annex B is indicative until the authority concerned has reviewed it.
+Open draft for consultation with authorities and industry. CTRES is an independent standard: it carries no regulatory force and creates no new obligations. Every reference to a jurisdiction's rules is a reading of published sources, offered for correction. Every profile in Annex B is indicative until the authority concerned has reviewed it.
 
 ## Files
 
@@ -37,7 +37,7 @@ npm run build    # writes ../CTRES_v1.0.docx
 
 The lock file pins `docx` 9.7.2, the version that produced the published document (verified with Node.js 26.5 and npm 11.17).
 
-The rows of Annex B (the indicative jurisdiction profiles and their principal sources) are included in the published `CTRES_v1.0.docx` and `CTRES_v1.0.pdf`. Their source data is maintained by the editor and is not in this repository, so a build from this repository shows a placeholder paragraph in Annex B in place of the table. Every other part of the text is generated in full. Corrections to Annex B are made through the profile correction template or by writing to hello@ctres.org (see `CONTRIBUTING.md`).
+The rows of Annex B (the jurisdiction profiles, researched from published sources, and their principal sources) are included in the published `CTRES_v1.0.docx` and `CTRES_v1.0.pdf`. Their source data is maintained by the editor and is not in this repository, so a build from this repository shows a placeholder paragraph in Annex B in place of the table. Every other part of the text is generated in full. Corrections to Annex B are made through the profile correction template or by writing to hello@ctres.org (see `CONTRIBUTING.md`).
 
 The PDF is not produced by the build script. It is exported from the Word document with Microsoft Word (File > Save As > PDF).
 

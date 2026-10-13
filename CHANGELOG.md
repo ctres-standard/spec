@@ -2,6 +2,43 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — Annex B revision, 13 October 2026 (release v1.0.2)
+
+Every profile row below was re-verified cell by cell against the primary instruments - acts, regulations, regulator standards, licence conditions and FIU rules, each opened and quoted - after a regulator's correction showed that parts of v1.0 had been written from index pages. Twenty-four of the 67 rows are updated in this release; four of them were additionally reviewed by their authority, whose corrections are adopted as submitted. The record model, fields and profile parameters are unchanged.
+
+Reviewed by their authority:
+
+- Annex B: Canada - British Columbia part reviewed with the authority (7 October 2026); the BC statements stand word for word as submitted. FINTRAC corrected: large cash, casino disbursement and large virtual currency reports within 15 calendar days (LVCTR 5 working days), not 24 hours.
+- Annex B: Latvia - reviewed with the State Revenue Service (8 October 2026): player-owned credit cards and PSPs permitted with every transaction identified to a person; closed loop confirmed; player funds in a Latvian credit institution; quarterly turnover reports on demand and VID remote access to platforms.
+- Annex B: Lithuania - reviewed with the Gaming Control Authority (12 October 2026): operator platform connected to LAKIS, transmitting at least every 30 days; identification and registration at EUR 1,000 on deposits, payouts and exchanges.
+- Annex B: Norway - reviewed with Lotteritilsynet (13 October 2026): exclusive-rights model plus a licensed private market for online and internet bingo; eID an operator's choice, full identification at registration; mandatory daily and monthly bet limits; a separate gambling account for each player.
+
+Re-verified from primary sources:
+
+- Annex B: United Kingdom - casino due diligence threshold GBP 2,000 (not EUR) since 30 June 2026 (MLR 2017 reg 27(5) as amended); financial-limit prompt wording aligned to RTS 12A/12E.
+- Annex B: Ireland - authority named in full (GRAI, commenced 5 March 2025); segregation power s.136 and credit ban s.165 dates verified in the Act and S.I.s.
+- Annex B: Malta - VFA deposits only with prior MGA approval under the DLT Policy; 5-working-day payout qualified as in Art 29(1); EUR 2,000 threshold computed daily or over rolling 180 days (two permitted methods).
+- Annex B: Isle of Man - winnings paid back to a deposit instrument the operator is satisfied belongs to the customer (AML/CFT guidance V1.3 para 29); EUR 3,000-in-30-days verification confirmed as Code 2019 rule; client account at a recognised Isle of Man bank.
+- Annex B: Germany - payouts to a payment account in the player's name (GlüStV § 6b(4)); GwG § 16 payment rules (EUR 25/100 exceptions, no interest) cited from the official text; deposit-limit guideline EUR 10,000/30,000 noted.
+- Annex B: Austria - concessions granted by Finanzamt Österreich since 2021; AML duties via GSpG § 31c and FM-GwG; retention ten years, not five; bill 594 d.B. provisions (central Sperrregister, PSP payment stops within 3 banking days) dated to their 1 January 2027 entry into force.
+- Annex B: Czech Republic - cash deposits and withdrawals allowed up to CZK 10,000 per 24 hours (not cashless); RVO exclusion register categories completed; blocklists moved to §§ 84a-84h with PSP account blocking; daily automated reporting confirmed.
+- Annex B: Slovakia - AML reports to the FSJ of the Police Presidium; payment providers block on the ÚRHH weekly blacklist without a court order (from 1 January 2026); financial guarantees EUR 750k-1.5m; game-data backups and 5-year AML retention cited.
+- Annex B: Estonia - stakes may be money or crypto-assets by definition since 1 January 2026 (§ 2(2)); credit-agreement ban § 34; player-account payment rule grounded in § 53(1)(5)-(6); AML retention cited from RahaPTS § 47.
+- Annex B: Finland - authorities staged: Poliisihallitus until 30 June 2027, then LVV; licence application dates corrected; player-set transfer limits per licence holder; no payment-blocking provision in the 2026 Act.
+- Annex B: Sweden - credit ban is general (any credit-financed play), instrument names come from the preparatory works; own-account rule wording verified.
+- Annex B: Poland - state monopoly covers all online gambling except betting and promotional lotteries; payments exclusively through Payment Services Act providers; STRs within 2 business days and EUR 15,000 reports cited; winnings register and quarterly data added.
+- Annex B: Bosnia and Herzegovina - AML instrument named (Law 13/24, Official Gazette 19 February 2024): STR before execution, cash and connected KM 30,000 reports within 3 days, 10-year retention; licence guarantees are performance guarantees from Federation-seated banks.
+- Annex B: Philippines - payment providers accredited by PAGCOR with BSP licences; BSP M-2025-029 covers all BSP-supervised institutions (48-hour link removal); Circular 1237/2026 marketplace ban; registration at 21+ with government ID; 6-year PAGCOR record retention.
+- Annex B: Curaçao - CDD at NAf 4,000 calculated daily across deposits and withdrawals; unusual-transaction threshold XCG 5,000; incident reports within 24 hours; portal deadlines suspended while the CGA portal is offline.
+- Annex B: Brazil - row restated on the Lei 14.790 regime with Medida Provisória 1.394/2026 wind-down dates; permitted rails from Portaria 615 art. 3 (Pix, TED, debit, prepaid, book transfer); SIGAP identity checks every 15 days (IN 22/2025); reporting duties and 5 October 2026 balance snapshot from Portaria 3.005/2026.
+- Annex B: Paraguay - CONAJZAR an autonomous unit of DNIT under Ley 7438/2025; prizes claimed within 60 working days, unclaimed to FONARESS; CDD from 8 minimum wages, STR within 24 hours of qualification, quarterly nil reports, 5-year retention cited from Res. SEPRELAD 258/2020 (official text OCR'd).
+- Annex B: South Africa - cash and EFT usage grounded in the FIC sector risk assessment; Western Cape own-name account and record rules cited from the Bookmakers Operational Rules; registered-remitter reporting via FIC Directive 6/2023.
+- Annex B: Botswana - no online gambling regime in the 2012 Act or 2016 Regulations (row scoped to land-based); Bank of Botswana AML regs cited (CDD and cash reports at P10,000, STRs within five working days); VASP licensing under the Virtual Assets Act 2025 noted.
+- Annex B: United States (New Jersey) - one account per patron per brand; patron-funds bank account and monthly certification schedule cited from N.J.A.C. 13:69O; no state CTR/SAR rule (federal Title 31 only), 13:69D searched in full.
+- Annex B: Canada (federal and provincial parts) and the three reviewed rows above also carry the audit's citation-level corrections.
+
+Register: the review register (authority, date, attribution, cells) is kept in reviews.json and shown on the site's profiles page.
+
 ## 1.0 — editorial revision, 5 October 2026 (release v1.0.1)
 
 - Status wording: CTRES is described as an independent open standard, published for consultation with authorities and industry.

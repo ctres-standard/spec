@@ -68,7 +68,7 @@ body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
   ['Status', 'Open draft for consultation with authorities and industry. An independent standard: it carries no regulatory force and creates no new obligations.'],
-  ['Date', '2 October 2026 (revised for publication 5 October 2026)'],
+  ['Date', '2 October 2026 (Annex B revision v1.0.2, 13 October 2026)'],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
   ['Website', 'https://ctres.org'],
@@ -431,7 +431,7 @@ body.push(P('The extracts in §4 and §6 are sufficient to build a working imple
 // ANNEX B — landscape section
 const bodyB = [];
 bodyB.push(H1('Annex B. Jurisdiction profiles'));
-bodyB.push(P('Readings of published sources as at 2 October 2026, summarised to the parameters in §5 and grouped by region. They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists; “to be confirmed” marks a reading the sources did not settle. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted.', { size: 18 }));
+bodyB.push(P('Readings of published sources as at 2 October 2026, re-verified against the primary instruments and updated 13 October 2026 (release v1.0.2), summarised to the parameters in §5 and grouped by region. They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted; rows marked reviewed carry the authority’s own wording.', { size: 18 }));
 const BW = [1750, 2900, 2550, 3050, 2028, 2400]; // sums to 14678
 // Annex B rows and sources live in annex_b_data.js, maintained by the editor and not published as data.
 // Without that file the build still succeeds and Annex B carries a placeholder paragraph.

@@ -1,12 +1,12 @@
 # CTRES: Common Transaction Reporting and Evidence Standard
 
-This repository holds the text of the Common Transaction Reporting and Evidence Standard (CTRES), version 1.0, universal edition, dated 2 October 2026 and revised for publication on 5 October 2026.
+This repository holds the text of the Common Transaction Reporting and Evidence Standard (CTRES), version 1.0, universal edition, dated 2 October 2026 and revised 1 November 2026. Annex B is the edition of 1 November 2026, with ninety jurisdictions.
 
 ## What CTRES is
 
 CTRES is an open, rail-neutral format in which licensed gambling operators, and the payment providers acting for them, evidence payment flows to the authorities that supervise them. It defines twelve record types (R1 to R12): funds locations, payment instrument links, deposits, withdrawals, check decisions, internal movements, reconciliation statements, exceptions, incidents, a provider register, provider attestations and references to reports filed with other authorities. Seven rail modules add the identifiers that belong to one rail only: cards; bank transfers and instant payments; e-money and e-wallets; mobile money and carrier billing; vouchers and prepaid; cash at retail or venue; and virtual assets.
 
-The Standard creates no obligation. It formats evidence of duties that already exist under each jurisdiction's law and licence conditions. Thresholds, aggregation windows, permitted rails, payout deadlines and retention periods are parameters of a jurisdiction profile, not constants of the format; Annex B gives indicative profiles for sixty-seven jurisdictions, read from published sources. CTRES does not replace any authority's central system, reporting portal or financial intelligence reporting schema. It is the operator-side evidence layer from which those submissions can be produced.
+The Standard creates no obligation. It formats evidence of duties that already exist under each jurisdiction's law and licence conditions. Thresholds, aggregation windows, permitted rails, payout deadlines and retention periods are parameters of a jurisdiction profile, not constants of the format; Annex B gives indicative profiles for ninety jurisdictions, read from published sources. CTRES does not replace any authority's central system, reporting portal or financial intelligence reporting schema. It is the operator-side evidence layer from which those submissions can be produced.
 
 ## Status
 
@@ -56,9 +56,9 @@ The universal edition keeps the record model of the Curaçao edition and general
 
 Suggested citation:
 
-> CTRES. *Common Transaction Reporting and Evidence Standard (CTRES)*, version 1.0, universal edition. Draft for consultation. 2 October 2026. https://ctres.org/standard/
+> CTRES. *Common Transaction Reporting and Evidence Standard (CTRES)*, version 1.0, universal edition. Draft for consultation. 2 October 2026 (Annex B edition of 1 November 2026). https://ctres.org/standard/
 
-Short form: CTRES v1.0 (universal edition, 2 October 2026).
+Short form: CTRES v1.0 (universal edition, 2 October 2026), Annex B edition of 1 November 2026. Earlier Annex B editions remain available as GitHub releases.
 
 ```bibtex
 @misc{ctres-1.0,
@@ -71,7 +71,7 @@ Short form: CTRES v1.0 (universal edition, 2 October 2026).
 }
 ```
 
-When citing a provision, give the section or annex number, for example "CTRES v1.0, §4.2" or "CTRES v1.0, Annex B".
+When citing a provision, give the section or annex number, for example "CTRES v1.0, §4.2" or "CTRES v1.0, Annex B (edition of 1 November 2026)".
 
 ## Licence
 

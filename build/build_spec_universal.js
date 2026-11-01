@@ -68,7 +68,8 @@ body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
   ['Status', 'Open draft for consultation with authorities and industry. An independent standard: it carries no regulatory force and creates no new obligations.'],
-  ['Date', '2 October 2026 (Annex B revision v1.0.2, 13 October 2026)'],
+  ['Date', '2 October 2026 (revised 1 November 2026)'],
+  ['Annex B edition', '1 November 2026 — ninety jurisdictions'],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
   ['Website', 'https://ctres.org'],
@@ -96,7 +97,7 @@ body.push(BR());
 body.push(H1('1. Purpose and status'));
 body.push(H2('1.1 The problem this Standard addresses'));
 body.push(P('Every gambling regulator asks operators the same five questions about money. Did it come from the player? Was it checked before it was accepted? Was it credited correctly? Where did it go when it left? Is the money owed to players actually there? Each regulator asks in its own format, on its own calendar and through its own channel.'));
-body.push(P('The research behind this version reviewed the published rules of sixty-seven jurisdictions on five continents (Annex B), from long-established online markets to markets that are opening, closed or still writing their rules. The questions are the same in all of them. What differs is a small set of parameters: which payment rails are permitted, at what amounts checks and reports are triggered, over what time window amounts are aggregated, how quickly a payout must be made, where data must be held, and for how long.'));
+body.push(P('The research behind this version reviewed the published rules of ninety jurisdictions on six continents (Annex B), from long-established online markets to markets that are opening, closed or still writing their rules. The questions are the same in all of them. What differs is a small set of parameters: which payment rails are permitted, at what amounts checks and reports are triggered, over what time window amounts are aggregated, how quickly a payout must be made, where data must be held, and for how long.'));
 body.push(P('Three consequences follow from the absence of a common format:'));
 body.push(BUL('An operator licensed in several jurisdictions rebuilds the same evidence for each. In federal, provincial and entity systems — Argentina, Bosnia and Herzegovina, Canada, Nigeria, South Africa, the United States — the same facts arrive in as many shapes as there are licensing bodies.'));
 body.push(BUL('More than half of the jurisdictions reviewed run, or are building, a central system, data vault or state transaction register — from Italy, Spain, Denmark and Germany to Brazil, Colombia, Kazakhstan, Uzbekistan and Uganda. Each defines the operator-side data afresh, so every new connection is a bespoke integration.'));
@@ -113,7 +114,7 @@ body.push(BUL('It does not cover game outcomes, wagering records beyond their re
 body.push(H2('1.3 Relation to the Curaçao edition'));
 body.push(P('The first edition of this Standard, prepared in September 2026, covered virtual assets only, under one jurisdiction’s crypto policy. This universal edition keeps its record model and makes three structural changes:'));
 body.push(BUL('Rail-neutral core. The record model describes any payment rail. Virtual assets become one rail module among seven (§6), and everything the Curaçao edition defined for them is kept.'));
-body.push(BUL('Jurisdiction profiles. Thresholds, windows, permitted rails, deadlines and retention periods are no longer written into the records; they are parameters of a profile (§5). Profiles for sixty-seven jurisdictions, researched from published sources, are in Annex B.'));
+body.push(BUL('Jurisdiction profiles. Thresholds, windows, permitted rails, deadlines and retention periods are no longer written into the records; they are parameters of a profile (§5). Profiles for ninety jurisdictions, researched from published sources, are in Annex B.'));
 body.push(BUL('Map, don’t replace. Each record carries the references that payment rails and regulators’ own systems issue, so a single source of truth can feed every submission (§7).'));
 body.push(P('The full list of differences is in Annex F.'));
 
@@ -394,7 +395,7 @@ body.push(table(['Element', 'Arrangement'], [
   ['Editor', 'Dmitry Skachko. Maintains the text, the schema, the register of profiles and the conformance suite, and publishes versions.'],
   ['Authorities', 'Own their profiles. Corrections an authority makes to its own profile are adopted as submitted.'],
   ['Contributors', 'Operators, suppliers, auditors and associations comment through the public issue tracker at github.com/ctres-standard/spec or to hello@ctres.org. Substantive changes are published for comment before adoption.'],
-  ['Versioning', 'Major versions change the record model; minor versions add fields, rails or profiles; patches correct text. Profiles, mapping files and the conformance suite are versioned separately.'],
+  ['Versioning', 'Major versions change the record model; minor versions add fields, rails or profile parameters; patches correct text. Annex B is a dated edition of the register of profiles: adding or correcting jurisdiction profiles publishes a new Annex B edition and does not change the version of the Standard. Mapping files and the conformance suite are versioned separately.'],
   ['Licence', 'The text is licensed under CC BY 4.0. The schema (record types R1–R12, the package manifest and the structure of a jurisdiction profile) and the reference validator for the Structural and Referential classes (§11) are licensed under the Apache License 2.0. Profiles are published in human-readable form in Annex B. Anyone may implement the Standard without fee or permission.'],
   ['Conformance claims', '“CTRES Conformant” describes an implementation tested against a named conformance suite version. A claim states the suite and profile versions it was tested against.'],
   ['Working group', 'The editor proposes to convene a working group of authorities and practitioners once at least three authorities have reviewed their profiles.'],
@@ -431,7 +432,7 @@ body.push(P('The extracts in §4 and §6 are sufficient to build a working imple
 // ANNEX B — landscape section
 const bodyB = [];
 bodyB.push(H1('Annex B. Jurisdiction profiles'));
-bodyB.push(P('Readings of published sources as at 2 October 2026, re-verified against the primary instruments and updated 13 October 2026 (release v1.0.2), summarised to the parameters in §5 and grouped by region. They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted; rows marked reviewed carry the authority’s own wording.', { size: 18 }));
+bodyB.push(P('Edition of 1 November 2026: ninety jurisdictions, read from published sources and re-verified against the primary instruments, summarised to the parameters in §5 and grouped by region. Annex B editions are dated and change as profiles are added or corrected, without changing the version of the Standard (§13). They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted; rows marked reviewed carry the authority’s own wording.', { size: 18 }));
 const BW = [1750, 2900, 2550, 3050, 2028, 2400]; // sums to 14678
 // Annex B rows and sources live in annex_b_data.js, maintained by the editor and not published as data.
 // Without that file the build still succeeds and Annex B carries a placeholder paragraph.
@@ -514,7 +515,7 @@ bodyC.push(H1('Annex F. Differences from the Curaçao edition'));
 bodyC.push(table(['Area', 'Curaçao edition (September 2026)', 'This edition'], [
   ['Name', 'Crypto Transaction Reporting and Evidence Standard', 'Common Transaction Reporting and Evidence Standard; the short name CTRES is kept'],
   ['Scope', 'Virtual assets only', 'Every payment rail, through rail modules (§6)'],
-  ['Jurisdiction', 'One, with its rules written into the text', 'Any, through profiles (§5); sixty-seven profiles researched from published sources (Annex B)'],
+  ['Jurisdiction', 'One, with its rules written into the text', 'Any, through profiles (§5); ninety profiles researched from published sources (Annex B)'],
   ['R1', 'Wallet Inventory', 'Funds Location: any location type, protection mechanism, location jurisdiction'],
   ['R2', 'Player Wallet Link', 'Payment Instrument Link: holder match, funding type including invoice and buy-now-pay-later, issuer country, national-ID match, payout status'],
   ['R3, R4', 'On-chain fields at the core', 'Rail-neutral core; rail and authority references; tax lines; limit check; payout timing; closed-loop evidence'],
@@ -549,6 +550,6 @@ const doc = new Document({
   ],
 });
 
-if (HAS_ANNEX_B && JURISDICTION_COUNT !== 67) throw new Error('count '+JURISDICTION_COUNT);
+if (HAS_ANNEX_B && JURISDICTION_COUNT !== 90) throw new Error('count '+JURISDICTION_COUNT);
 if (!HAS_ANNEX_B) console.log('annex_b_data.js not found: Annex B built with a placeholder');
 Packer.toBuffer(doc).then((buf) => { fs.writeFileSync(OUT, buf); console.log('written', OUT); });

@@ -2,6 +2,20 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — Annex B edition of 1 November 2026 (release v1.0.3)
+
+A new Annex B edition and a clarification of §13. The record model, fields and profile parameters are unchanged.
+
+- §13 Versioning clarified: Annex B is a dated edition of the register of profiles. Adding or correcting jurisdiction profiles publishes a new Annex B edition and does not change the version of the Standard (the earlier wording listed profiles both as a reason for a minor version and as versioned separately). The cover gains an "Annex B edition" row.
+
+### Annex B
+
+Twenty-three jurisdiction profiles added: Annex B now carries ninety, in four regions, with the Asian region renamed Eurasia, Middle East, Asia and Pacific. Added with values researched from the primary instruments: Australia (Interactive Gambling Act 2001, including the 2024 credit and digital-currency ban and the BetStop register; AML/CTF Act 2006), Liechtenstein (Geldspielgesetz, Geldspielverordnung, Sorgfaltspflichtgesetz), North Macedonia (Law on Games of Chance 2026), Mauritius (GRA Act 2007 as consolidated at 16 June 2026), and eight United States state rows alongside New Jersey - New York, Pennsylvania, Michigan, Delaware, West Virginia, Virginia, Colorado and Iowa (state codes plus the federal 31 CFR 1021 layer). Also added with values researched from the primary instruments: Jersey (JGC codes of practice and the Gambling (Jersey) Law 2012), Belarus (Presidential Decree No. 226 of 2025 and Council of Ministers Resolution No. 764 of 2025 - the SKKS system, next-banking-day payouts), Uruguay (Decretos 366/017 and 379/018, Ley 19.535), Kahnawà:ke (Regulations concerning Interactive Gaming, 25 March 2026, and the AML/CTF Regulations 2021), Comoros (Anjouan) (the published Anjouan Gaming framework), and the United States rows for Nevada, North Carolina, Arkansas, Mississippi and Nebraska (state codes plus the federal layer). Comoros (Mohéli) is recorded as having no locatable regulator or instruments. New rows are researched from published sources, as at 1 November 2026. The record model, fields and profile parameters are unchanged.
+
+Reviewed by their authority:
+
+- Annex B: Czech Republic - reviewed with the Ministry of Finance (Gambling Regulation Unit, 30 October 2026); four amendments adopted as submitted: only monetary funds may be used as stakes; user-account funds paid out without undue delay, extendable to up to 60 days in justified cases; identification always mandatory when the user account is opened; the security deposit (kauce) tied to the operator rather than game types, four categories from CZK 20 million to CZK 300 million set from the gambling tax paid for the preceding period (§ 95), provided by transfer to the Ministry's account or by bank guarantee, and no longer used to cover unpaid winnings.
+
 ## 1.0 — Annex B revision, 13 October 2026 (release v1.0.2)
 
 Every profile row below was re-verified cell by cell against the primary instruments - acts, regulations, regulator standards, licence conditions and FIU rules, each opened and quoted - after a regulator's correction showed that parts of v1.0 had been written from index pages. Twenty-four of the 67 rows are updated in this release; four of them were additionally reviewed by their authority, whose corrections are adopted as submitted. The record model, fields and profile parameters are unchanged.

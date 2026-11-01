@@ -49,7 +49,7 @@ const code = (t) => new Paragraph({ spacing: { after: 120 }, shading: { type: Sh
   children: [new TextRun({ text: t, font: 'Courier New', size: 15 })] });
 
 const footer = () => new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [
-  new TextRun({ text: `${VERSION} — open draft — ${BRAND.web} — page `, font: FONT, size: 15, color: '808080' }),
+  new TextRun({ text: `${VERSION} — ${BRAND.web} — page `, font: FONT, size: 15, color: '808080' }),
   new TextRun({ children: [PageNumber.CURRENT], font: FONT, size: 15, color: '808080' })] })] });
 // page sizes in points: portrait 595 x 842, landscape 842 x 595; image px at 96 dpi = 0.75 pt
 const header = (w, h, pageW, pageH) => new Header({ children: [new Paragraph({ children: [new ImageRun({ type: 'png', data: WM,
@@ -62,12 +62,12 @@ const header = (w, h, pageW, pageH) => new Header({ children: [new Paragraph({ c
 const body = [];
 
 // ---------------- COVER ----------------
-body.push(new Paragraph({ spacing: { after: 240 }, children: [new TextRun({ text: 'DRAFT FOR CONSULTATION — AN INDEPENDENT OPEN STANDARD', font: FONT, size: 16, bold: true, color: 'C00000' })] }));
+body.push(new Paragraph({ spacing: { after: 240 }, children: [new TextRun({ text: 'PUBLISHED STANDARD — INDEPENDENT AND OPEN', font: FONT, size: 16, bold: true, color: '2E5496' })] }));
 body.push(new Paragraph({ spacing: { after: 80 }, children: [new TextRun({ text: 'Common Transaction Reporting and Evidence Standard', font: FONT, size: 44, bold: true, color: '1F3864' })] }));
 body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text: 'An open, rail-neutral format for evidencing payment flows in regulated gambling', font: FONT, size: 24, color: '404040' })] }));
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
-  ['Status', 'Open draft for consultation with authorities and industry. An independent standard: it carries no regulatory force and creates no new obligations.'],
+  ['Status', 'Published, version 1.0. Open for implementation and for public comment. A voluntary, independent standard: it carries no regulatory force and creates no new obligations.'],
   ['Date', '2 October 2026 (revised 1 November 2026)'],
   ['Annex B edition', '1 November 2026 — ninety jurisdictions'],
   ['Editor', 'Dmitry Skachko'],
@@ -527,7 +527,7 @@ bodyC.push(table(['Area', 'Curaçao edition (September 2026)', 'This edition'], 
   ['R3, R4 currencies', 'Account currency, account rate and operator-side network cost added in the September revisions', 'Kept, for every rail'],
   ['Cadence', 'The periodic package was aligned to one jurisdiction’s semi-annual reporting dates', 'Cadence is set by each profile'],
 ], [1700, 3300, 4746]));
-bodyC.push(new Paragraph({ spacing: { before: 300 }, children: [new TextRun({ text: 'End of draft. Corrections to any profile are especially welcome: the Standard is only as good as the authorities’ reading of it.', font: FONT, size: 18, italics: true, color: '595959' })] }));
+bodyC.push(new Paragraph({ spacing: { before: 300 }, children: [new TextRun({ text: 'End of the Standard. Corrections to any profile are especially welcome: the Standard is only as good as the authorities’ reading of it.', font: FONT, size: 18, italics: true, color: '595959' })] }));
 
 // =====================================================================
 const portrait = { page: { margin: { top: 1000, right: 1080, bottom: 1000, left: 1080 } } };
@@ -539,7 +539,7 @@ const doc = new Document({
   title: 'Common Transaction Reporting and Evidence Standard (CTRES) v1.0',
   subject: 'Open, rail-neutral format for evidencing payment flows in regulated gambling',
   keywords: 'CTRES; gambling regulation; payments; AML; evidence; standard',
-  description: 'Open draft for consultation. https://ctres.org · hello@ctres.org',
+  description: 'CTRES v1.0, published standard. https://ctres.org · hello@ctres.org',
   numbering: { config: [{ reference: 'bul', levels: [{ level: 0, format: LevelFormat.BULLET, text: '•', alignment: AlignmentType.LEFT,
     style: { paragraph: { indent: { left: 360, hanging: 200 } } } }] }] },
   styles: { default: { document: { run: { font: FONT, size: 20 } } } },

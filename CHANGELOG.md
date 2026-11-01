@@ -2,6 +2,12 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — published status, 1 November 2026 (release v1.0.4)
+
+- Status: version 1.0 is published, open for implementation and for public comment, as a voluntary and independent standard. "Draft for consultation" is removed from the cover, the status row, the page footer and the watermark.
+- The release v1.0.2 entry below now lists the British Columbia part of the Canada profile as updated rather than reviewed, at the authority's request.
+- Annex B (edition of 1 November 2026), the record model, fields and profile parameters are unchanged.
+
 ## 1.0 — Annex B edition of 1 November 2026 (release v1.0.3)
 
 A new Annex B edition and a clarification of §13. The record model, fields and profile parameters are unchanged.
@@ -18,17 +24,17 @@ Reviewed by their authority:
 
 ## 1.0 — Annex B revision, 13 October 2026 (release v1.0.2)
 
-Every profile row below was re-verified cell by cell against the primary instruments - acts, regulations, regulator standards, licence conditions and FIU rules, each opened and quoted - after a regulator's correction showed that parts of v1.0 had been written from index pages. Twenty-four of the 67 rows are updated in this release; four of them were additionally reviewed by their authority, whose corrections are adopted as submitted. The record model, fields and profile parameters are unchanged.
+Every profile row below was re-verified cell by cell against the primary instruments - acts, regulations, regulator standards, licence conditions and FIU rules, each opened and quoted - after a regulator's correction showed that parts of v1.0 had been written from index pages. Twenty-four of the 67 rows are updated in this release; three of them were additionally reviewed by their authority, whose corrections are adopted as submitted. The record model, fields and profile parameters are unchanged.
 
 Reviewed by their authority:
 
-- Annex B: Canada - British Columbia part reviewed with the authority (7 October 2026); the BC statements stand word for word as submitted. FINTRAC corrected: large cash, casino disbursement and large virtual currency reports within 15 calendar days (LVCTR 5 working days), not 24 hours.
 - Annex B: Latvia - reviewed with the State Revenue Service (8 October 2026): player-owned credit cards and PSPs permitted with every transaction identified to a person; closed loop confirmed; player funds in a Latvian credit institution; quarterly turnover reports on demand and VID remote access to platforms.
 - Annex B: Lithuania - reviewed with the Gaming Control Authority (12 October 2026): operator platform connected to LAKIS, transmitting at least every 30 days; identification and registration at EUR 1,000 on deposits, payouts and exchanges.
 - Annex B: Norway - reviewed with Lotteritilsynet (13 October 2026): exclusive-rights model plus a licensed private market for online and internet bingo; eID an operator's choice, full identification at registration; mandatory daily and monthly bet limits; a separate gambling account for each player.
 
 Re-verified from primary sources:
 
+- Annex B: Canada - British Columbia part updated (7 October 2026). FINTRAC corrected: large cash, casino disbursement and large virtual currency reports within 15 calendar days (LVCTR 5 working days), not 24 hours.
 - Annex B: United Kingdom - casino due diligence threshold GBP 2,000 (not EUR) since 30 June 2026 (MLR 2017 reg 27(5) as amended); financial-limit prompt wording aligned to RTS 12A/12E.
 - Annex B: Ireland - authority named in full (GRAI, commenced 5 March 2025); segregation power s.136 and credit ban s.165 dates verified in the Act and S.I.s.
 - Annex B: Malta - VFA deposits only with prior MGA approval under the DLT Policy; 5-working-day payout qualified as in Art 29(1); EUR 2,000 threshold computed daily or over rolling 180 days (two permitted methods).

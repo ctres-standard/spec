@@ -2,6 +2,10 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — editorial revision, 3 November 2026 (release v1.0.5)
+
+- §1.3 and Annex F, which compared this text with a pre-release draft, are removed, together with the "Editions" row on the cover. The record model, fields, profile parameters and Annex B (edition of 1 November 2026) are unchanged.
+
 ## 1.0 — published status, 1 November 2026 (release v1.0.4)
 
 - Status: version 1.0 is published, open for implementation and for public comment, as a voluntary and independent standard. "Draft for consultation" is removed from the cover, the status row, the page footer and the watermark.
@@ -93,7 +97,7 @@ Edits made for the public release of version 1.0. The record model, the rail mod
 
 ## 1.0, universal edition (2 October 2026)
 
-The Standard is no longer tied to one jurisdiction or to virtual assets. The short name CTRES is kept; it now stands for Common Transaction Reporting and Evidence Standard. The version number remains 1.0. The Curaçao edition is the application of the virtual-asset module to one jurisdiction's crypto policy.
+First public version: one evidence format for every payment rail, applied under each jurisdiction's rules through jurisdiction profiles.
 
 ### Record model
 
@@ -109,7 +113,7 @@ The Standard is no longer tied to one jurisdiction or to virtual assets. The sho
 ### Rail modules
 
 - Seven rail modules (§6): cards; bank transfers and instant payments; e-money and e-wallets; mobile money and carrier billing; vouchers and prepaid; cash at retail or venue; virtual assets. Markets differ in the rails they rely on, from mobile money to instant payments to cards and bank transfers, and the core records now describe all of them.
-- The virtual-asset module keeps everything the Curaçao edition defined.
+- Virtual assets are one of the seven rail modules (§6).
 
 ### Jurisdiction profiles
 
@@ -125,47 +129,3 @@ The Standard is no longer tied to one jurisdiction or to virtual assets. The sho
 
 - New §13. Sets out the role of the editor; states that authorities own their profiles and that corrections an authority makes to its own profile are adopted as submitted; and defines versioning.
 
-### Carried over from the Curaçao edition revisions
-
-So that the two editions do not diverge, the universal edition carries over the record-model and drafting changes made in revisions 2 and 3 of the Curaçao edition:
-
-- account currency and account exchange rate in R3 and R4;
-- R2 submitted as the full register at period end;
-- `supersedes` in R5;
-- a counterparty side and the `conversion` purpose in R6;
-- provider-reported balances in R7;
-- the design principle "Computed, not declared";
-- the package fingerprint, defined as the SHA-256 hash of `manifest.json`;
-- completeness checked against independent sources where they exist;
-- a question to authorities on whether operators may refer to the Standard in the policies they file;
-- the editor's contact details on every page, in a watermark and in the footer.
-
-## Curaçao edition (September 2026)
-
-The first edition, titled Crypto Transaction Reporting and Evidence Standard, covered virtual assets only, under the Curaçao Gaming Authority's crypto policy guideline. This entry lists its record-model changes only. Field names are those of the Curaçao edition; where the universal edition renamed a field, the new name is given in brackets.
-
-### First draft (23 September 2026)
-
-- Ten record types, R1 to R10.
-
-### 1.0 (26 September 2026)
-
-- R1: `custody_model` (self-custody, omnibus at a provider, hybrid), which selects the reconciliation profile.
-- New R11 Custody Attestation: the provider's statement, standing in for on-chain evidence where funds sit in the provider's pooled wallet.
-- R2: `unique_deposit_address`.
-- R2, R3 and R4: `player_ref_scope`, because player references are not unique across the brands of one operator.
-- R3 and R4: `credited_at`, the moment the player account was credited or debited, which prior checks must precede; `off_chain_movement`; `processor_reference` as the join key where no transaction hash exists [`rail_reference`].
-- R5: `performed_by_party`.
-- The value `not_recorded`, reported where a control left no record, so that an absence of evidence is visible.
-
-### Revision 2 (26 September 2026)
-
-- R11: a field table.
-- R7: provider-reported opening and closing balances, for the pooled-custody reconciliation profile.
-
-### Revision 3 (26 September 2026)
-
-- R3 and R4: `account_currency` (mandatory) and `account_fx_rate` (conditional); `credited_amount` stated in the account currency; fees stated as deductions borne by the player, in units of the asset; `network_cost_reporting_ccy` (optional) for network costs borne by the operator [`operator_cost_reporting_ccy`].
-- R2: submitted as the full register at period end rather than new links only; a player is identified by the pair `player_ref_scope` and `player_ref`.
-- R5: `supersedes` links successive decisions, for example a step-up review followed by allow. In R3 and R4, `screening_decision_id` references the decision in force at crediting or dispatch [`check_ids`].
-- R6: one side of a movement may be a counterparty from R10 (`counterparty_id`, `counterparty_address`); new purpose `conversion`.

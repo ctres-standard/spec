@@ -68,13 +68,12 @@ body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
   ['Status', 'Published, version 1.0. Open for implementation and for public comment. A voluntary, independent standard: it carries no regulatory force and creates no new obligations.'],
-  ['Date', '2 October 2026 (revised 1 November 2026)'],
+  ['Date', '2 October 2026 (revised 3 November 2026)'],
   ['Annex B edition', '1 November 2026 — ninety jurisdictions'],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
   ['Website', 'https://ctres.org'],
   ['Coverage', 'Every payment rail — cards, bank and instant payments, e-money, mobile money, vouchers, cash at retail, virtual assets — under any jurisdiction’s rules, through jurisdiction profiles'],
-  ['Editions', 'This universal edition. A Curaçao edition (September 2026) applies the virtual-asset module to the CGA crypto policy guideline.'],
   ['Licence to use', 'The text is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Any operator, supplier or authority may implement the Standard without fee or permission. The schema and a reference validator for structural and referential checks are published under the Apache License 2.0 at github.com/ctres-standard. Governance is set out in §13.'],
   ['Comments', 'Through the public issue tracker at github.com/ctres-standard/spec, or to hello@ctres.org. Every authority is invited to correct its own profile in Annex B; corrections an authority makes to its own profile are adopted as submitted.'],
 ], [2100, 7646]));
@@ -88,7 +87,7 @@ body.push(H1('Contents'));
  ['12.', 'Data protection, confidentiality and retention'], ['13.', 'Governance and versioning'], ['14.', 'Roadmap'],
  ['15.', 'Questions for authorities'],
  ['A.', 'Field catalogue'], ['B.', 'Jurisdiction profiles'], ['C.', 'Example records'],
- ['D.', 'Conformance declaration (template)'], ['E.', 'Glossary'], ['F.', 'Differences from the Curaçao edition']]
+ ['D.', 'Conformance declaration (template)'], ['E.', 'Glossary']]
  .forEach(([n, t]) => body.push(new Paragraph({ spacing: { after: 60 }, indent: { left: 200 },
    children: [new TextRun({ text: n + '  ', font: FONT, size: 20, bold: true, color: '2E5496' }), new TextRun({ text: t, font: FONT, size: 20 })] })));
 body.push(BR());
@@ -111,12 +110,6 @@ body.push(BUL('It is independent of any authority. Every reference to a jurisdic
 body.push(BUL('It names no vendor and requires none.'));
 body.push(BUL('It does not cover game outcomes, wagering records beyond their reference, marketing data or behavioural analytics.'));
 
-body.push(H2('1.3 Relation to the Curaçao edition'));
-body.push(P('The first edition of this Standard, prepared in September 2026, covered virtual assets only, under one jurisdiction’s crypto policy. This universal edition keeps its record model and makes three structural changes:'));
-body.push(BUL('Rail-neutral core. The record model describes any payment rail. Virtual assets become one rail module among seven (§6), and everything the Curaçao edition defined for them is kept.'));
-body.push(BUL('Jurisdiction profiles. Thresholds, windows, permitted rails, deadlines and retention periods are no longer written into the records; they are parameters of a profile (§5). Profiles for ninety jurisdictions, researched from published sources, are in Annex B.'));
-body.push(BUL('Map, don’t replace. Each record carries the references that payment rails and regulators’ own systems issue, so a single source of truth can feed every submission (§7).'));
-body.push(P('The full list of differences is in Annex F.'));
 
 // ---------------- 2 ----------------
 body.push(H1('2. Scope'));
@@ -310,7 +303,7 @@ body.push(table(['Rail', 'Identifiers carried', 'Holder verification typically a
   ['Cash at retail or venue', 'Retail point or cage identifier, cashier, receipt', 'Identity at the counter', 'Till and float reconciliations'],
   ['Virtual assets', 'Chain, asset, transaction hash, address, confirmations, counterparty type, wallet temperature, off-chain flag', 'Signed message, micro-transfer, provider attestation, Travel Rule data', 'On-chain data; provider attestations (R11)'],
 ], [2100, 2700, 2500, 2446]));
-body.push(P('The virtual-asset module carries forward everything in the Curaçao edition: wallet purpose classes and temperature, key-control models, same-asset and same-wallet withdrawals, blockchain analytics as a check type, and custody models for pooled provider wallets.'));
+body.push(P('The virtual-asset module covers wallet purpose classes and temperature, key-control models, same-asset and same-wallet withdrawals, blockchain analytics as a check type, and custody models for pooled provider wallets.'));
 
 // ---------------- 7 ----------------
 body.push(H1('7. Mapping to existing regulatory formats'));
@@ -511,22 +504,6 @@ bodyC.push(table(['Term', 'Meaning in this Standard'], [
   ['Indexed unit', 'A threshold expressed in a unit whose money value changes over time, such as a minimum wage or an inflation-indexed unit.'],
 ], [2300, 7446]));
 
-bodyC.push(H1('Annex F. Differences from the Curaçao edition'));
-bodyC.push(table(['Area', 'Curaçao edition (September 2026)', 'This edition'], [
-  ['Name', 'Crypto Transaction Reporting and Evidence Standard', 'Common Transaction Reporting and Evidence Standard; the short name CTRES is kept'],
-  ['Scope', 'Virtual assets only', 'Every payment rail, through rail modules (§6)'],
-  ['Jurisdiction', 'One, with its rules written into the text', 'Any, through profiles (§5); ninety profiles researched from published sources (Annex B)'],
-  ['R1', 'Wallet Inventory', 'Funds Location: any location type, protection mechanism, location jurisdiction'],
-  ['R2', 'Player Wallet Link', 'Payment Instrument Link: holder match, funding type including invoice and buy-now-pay-later, issuer country, national-ID match, payout status'],
-  ['R3, R4', 'On-chain fields at the core', 'Rail-neutral core; rail and authority references; tax lines; limit check; payout timing; closed-loop evidence'],
-  ['R5', 'Screening Decision', 'Check Decision: fifteen check types, including central limit files, credit registers, eligibility and exclusion registers, biometric checks and financial risk'],
-  ['R7', 'Wallet reconciliation', 'Location statements and a coverage statement for player liabilities'],
-  ['R10, R11', 'Counterparty register; custody attestation', 'Provider register for any provider role; provider attestation for any pooled arrangement'],
-  ['R12', '—', 'New: references to reports filed with other authorities, without their content'],
-  ['New sections', '—', 'Jurisdiction profiles (§5), rail modules (§6), mapping to existing formats (§7), governance (§13)'],
-  ['R3, R4 currencies', 'Account currency, account rate and operator-side network cost added in the September revisions', 'Kept, for every rail'],
-  ['Cadence', 'The periodic package was aligned to one jurisdiction’s semi-annual reporting dates', 'Cadence is set by each profile'],
-], [1700, 3300, 4746]));
 bodyC.push(new Paragraph({ spacing: { before: 300 }, children: [new TextRun({ text: 'End of the Standard. Corrections to any profile are especially welcome: the Standard is only as good as the authorities’ reading of it.', font: FONT, size: 18, italics: true, color: '595959' })] }));
 
 // =====================================================================

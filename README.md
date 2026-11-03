@@ -41,16 +41,7 @@ The rows of Annex B (the jurisdiction profiles, researched from published source
 
 The PDF is not produced by the build script. It is exported from the Word document with Microsoft Word (File > Save As > PDF).
 
-Every page of both documents carries a diagonal watermark behind the text (`build/assets/watermark.png`) giving the version, the draft status and the addresses ctres.org and hello@ctres.org, and a page footer giving the version, the draft status and ctres.org.
-
-## Editions
-
-| Edition | Date | Scope |
-|---|---|---|
-| Universal edition (this repository) | 2 October 2026, revised for publication 5 October 2026 | Every payment rail, under any jurisdiction's rules, through jurisdiction profiles |
-| Curaçao edition | September 2026 | Virtual assets only, applied to the Curaçao Gaming Authority's crypto policy guideline |
-
-The universal edition keeps the record model of the Curaçao edition and generalises it. Annex F of the Standard lists the differences. The Curaçao edition is not included in this repository.
+Every page of both documents carries a diagonal watermark behind the text (`build/assets/watermark.png`) giving the version and the addresses ctres.org and hello@ctres.org, and a page footer giving the version and ctres.org.
 
 ## How to cite
 

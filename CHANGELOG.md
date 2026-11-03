@@ -2,6 +2,10 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.0 — Annex B edition of 3 November 2026 (release v1.0.6)
+
+- Annex B: Spain — the Sistema de Control Interno is named with its instrument (RD 1613/2011 art. 13; DGOJ data model of 6 June 2024, XSD 3.3 mandatory since 22 March 2025); the row now records that the SCI holds an operator account with GGR per game type monthly and a four-year minimum retention. Re-verified from the primary texts. The record model, fields and profile parameters are unchanged.
+
 ## 1.0 — editorial revision, 3 November 2026 (release v1.0.5)
 
 - §1.3 and Annex F, which compared this text with a pre-release draft, are removed, together with the "Editions" row on the cover. The record model, fields, profile parameters and Annex B (edition of 1 November 2026) are unchanged.

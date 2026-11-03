@@ -69,7 +69,7 @@ body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.0 — universal edition'],
   ['Status', 'Published, version 1.0. Open for implementation and for public comment. A voluntary, independent standard: it carries no regulatory force and creates no new obligations.'],
   ['Date', '2 October 2026 (revised 3 November 2026)'],
-  ['Annex B edition', '1 November 2026 — ninety jurisdictions'],
+  ['Annex B edition', '3 November 2026 — ninety jurisdictions'],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
   ['Website', 'https://ctres.org'],
@@ -425,7 +425,7 @@ body.push(P('The extracts in §4 and §6 are sufficient to build a working imple
 // ANNEX B — landscape section
 const bodyB = [];
 bodyB.push(H1('Annex B. Jurisdiction profiles'));
-bodyB.push(P('Edition of 1 November 2026: ninety jurisdictions, read from published sources and re-verified against the primary instruments, summarised to the parameters in §5 and grouped by region. Annex B editions are dated and change as profiles are added or corrected, without changing the version of the Standard (§13). They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted; rows marked reviewed carry the authority’s own wording.', { size: 18 }));
+bodyB.push(P('Edition of 3 November 2026: ninety jurisdictions, read from published sources and re-verified against the primary instruments, summarised to the parameters in §5 and grouped by region. Annex B editions are dated and change as profiles are added or corrected, without changing the version of the Standard (§13). They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces this one as submitted; rows marked reviewed carry the authority’s own wording.', { size: 18 }));
 const BW = [1750, 2900, 2550, 3050, 2028, 2400]; // sums to 14678
 // Annex B rows and sources live in annex_b_data.js, maintained by the editor and not published as data.
 // Without that file the build still succeeds and Annex B carries a placeholder paragraph.

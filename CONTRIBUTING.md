@@ -1,6 +1,6 @@
 # Contributing to CTRES
 
-CTRES v1.0 is a draft for consultation. Comments from authorities, operators, payment providers, auditors, associations and other readers are invited. This document explains how to submit them and how they are handled.
+CTRES v1.1 is a published standard, open for implementation and for public comment. Comments from authorities, operators, payment providers, auditors, associations and other readers are invited. This document explains how to submit them and how they are handled.
 
 This repository covers the text of the Standard. Comments on the JSON Schema belong in [ctres-standard/schema](https://github.com/ctres-standard/schema); comments on the validator belong in [ctres-standard/validator-lite](https://github.com/ctres-standard/validator-lite).
 
@@ -8,7 +8,7 @@ This repository covers the text of the Standard. Comments on the JSON Schema bel
 
 1. Open an issue in this repository using the **Comment on the text** template.
 2. Raise **one point per issue**. A comment that covers several unrelated points is harder to discuss and to resolve; split it into separate issues.
-3. **Cite the section, table or annex** the comment concerns, for example "§4.2, field `holder_match`" or "Annex B, Malta row". Give the edition and version if it is not v1.0, universal edition.
+3. **Cite the section, table or annex** the comment concerns, for example "§4.2, field `holder_match`" or "Annex B, Malta row". Give the edition and version if it is not v1.1, universal edition.
 4. Quote the current text briefly, state the problem, and, where possible, propose replacement wording.
 5. Where the comment concerns a regulatory requirement, cite the published source: instrument, article or paragraph, and the date in force.
 

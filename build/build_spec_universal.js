@@ -610,7 +610,7 @@ if (HAS_ANNEX_B) {
   const bRows = [new TableRow({ tableHeader: true, children: ['Jurisdiction', 'Rails and virtual assets', 'Ownership, closed loop, payouts', 'Thresholds and reports', 'Player funds', 'Reporting and retention'].map((h, i) => cell(h, BW[i], { head: true, size: 15 })) })];
   REGIONS.forEach(([name, rows]) => {
     bRows.push(regionRow(name, 6));
-    const nameAuth = (r) => { const [n, ...a] = r[0].split(' — '); return a.length ? n + ': ' + a.join(', ') : n; };
+    const nameAuth = (r) => { const [n, ...a] = r[0].split(' \u2014 '); return a.length ? n + ': ' + a.join(', ') : n; };
   rows.forEach((r, ri) => bRows.push(new TableRow({ cantSplit: true, children: r.slice(0, 6).map((c, i) => cell(i === 0 ? nameAuth(r) : c, BW[i], { alt: ri % 2 === 1, size: 14, bold: i === 0 })) })));
   });
   bodyB.push(new Table({ columnWidths: BW, width: { size: WL, type: WidthType.DXA }, rows: bRows }));
@@ -619,7 +619,7 @@ if (HAS_ANNEX_B) {
   bodyB.push(BR());
   bodyB.push(H2('Part 2. Revenue and levy'));
   bodyB.push(P('Part 2 gives, for each jurisdiction, the levy base and rate, the bonus and open-bet rules, the period and deadline, and the form or system through which the operator files, as read from published sources and summarised to the revenue and levy parameters of §5 of the Standard; a value seen only in a secondary source, or on which sources conflict, is followed by “(to be confirmed)”. Each row is offered to the authority concerned for review, and a corrected row replaces it as submitted.', { size: 18 }));
-  const shortName = (r) => r[0].split(' — ')[0];
+  const shortName = (r) => r[0].split(' \u2014 ')[0];
   if (REGIONS.some(([, rows]) => rows.some((r) => r[6]))) {
     REGIONS.forEach(([name, rows]) => {
       const rows2 = [new TableRow({ tableHeader: true, children: ['Jurisdiction', 'Revenue and levy'].map((h, i) => cell(h, BW2[i], { head: true, size: 15 })) }), regionRow(name, 2)];

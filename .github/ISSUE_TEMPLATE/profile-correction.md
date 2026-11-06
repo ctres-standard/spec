@@ -18,7 +18,7 @@ Issues are public: do not include confidential information or personal data.
 -->
 
 **Jurisdiction and authority**
-<!-- As named in Annex B, for example "Malta — Malta Gaming Authority; FIAU". -->
+<!-- As named in Annex B, for example "Malta - Malta Gaming Authority; FIAU". -->
 
 **Submitted by**
 - [ ] The authority concerned

@@ -2,37 +2,41 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
-## 1.1 — 5 November 2026 (release v1.1.0)
+## 1.1, editorial revision, 6 November 2026 (release v1.1.1)
+
+- Punctuation only: typographic dashes replaced by plain ones throughout the Standard, the Register, the repositories and the site; the name and authority of a Register row are now separated by a colon. No change to the text's meaning, the record model, the schema or the profiles.
+
+## 1.1, 5 November 2026 (release v1.1.0)
 
 Version 1.1 brings gaming revenue into scope as totals, ties them to the money the package already carries, restructures the text around a core of four records and four conformance levels, and adds a streaming mode and a bet-level record, so that an operator can start from the return it already files, an authority can ask for exactly as much evidence as it will use, and a regime that receives data in real time is served by the same records. Under §13 this is a minor version: three record types, one block of profile parameters and a delivery mode are added; no existing record type changes.
 
-- CTRES in one page: an unnumbered page after the contents — what the format is, the four core records, the money bridge, the four levels, and how an operator and an authority adopt it.
+- CTRES in one page: an unnumbered page after the contents - what the format is, the four core records, the money bridge, the four levels, and how an operator and an authority adopt it.
 - Core and modules (§2, §4, §10): the core is the package manifest with R3 Deposit, R4 Withdrawal, R7 Reconciliation Statement and R13 Gaming Revenue Statement; the Custody module is R1, R2, R6, R10 and R11; the Supervision module is R5, R8, R9 and R12; the Venue module is R14; the Wagering module is R15. The record table of §4 names the core or module of each record.
-- Streaming mode (§8.4; §3 "Two cadences, one record"): the same records delivered as a stream of events — a record in an envelope with a stream identifier, a strictly increasing sequence, the time of emission and an operation (create, update, void) — with a checkpoint per gaming day (first and last sequence, event count, SHA-256 of the event lines) listed in the period package, which remains the signed close. Latency, checkpoint cadence, bet-level data and transport are profile parameters (§5, submission); a reference push/pull interface is published with the schema. Validation (§11) gains a Stream class: envelope, order, checkpoints, latency, and reconciliation of the stream with the package. R13 gains statement_kind interim for hourly or daily statements in a stream.
-- R15 Bet Event (§4.15), the Wagering module, optional at every level: the money facts of each bet, round, ticket or hand — player reference, product line, channel, currency, stake, time placed, status, and on settlement the winnings and time — never game content. Where R15 is present, each R13 line is computed from its bets under the profile's recognition parameter. Scope (§1.2, §2) and data protection (§12) say so.
+- Streaming mode (§8.4; §3 "Two cadences, one record"): the same records delivered as a stream of events - a record in an envelope with a stream identifier, a strictly increasing sequence, the time of emission and an operation (create, update, void) - with a checkpoint per gaming day (first and last sequence, event count, SHA-256 of the event lines) listed in the period package, which remains the signed close. Latency, checkpoint cadence, bet-level data and transport are profile parameters (§5, submission); a reference push/pull interface is published with the schema. Validation (§11) gains a Stream class: envelope, order, checkpoints, latency, and reconciliation of the stream with the package. R13 gains statement_kind interim for hourly or daily statements in a stream.
+- R15 Bet Event (§4.15), the Wagering module, optional at every level: the money facts of each bet, round, ticket or hand - player reference, product line, channel, currency, stake, time placed, status, and on settlement the winnings and time - never game content. Where R15 is present, each R13 line is computed from its bets under the profile's recognition parameter. Scope (§1.2, §2) and data protection (§12) say so.
 - Conformance levels (§10, Annex D) redefined by scope: Level 1 Return (manifest + R13), Level 2 Evidence (+ R3, R4, R7; + R14 where a line is a venue line), Level 3 Custody (+ the Custody module), Level 4 Supervision (+ the Supervision module). Any record type may be included at any level; field requirements do not change with the level; at Levels 1 and 2 the instrument, provider, location and check identifiers are the operator's own and are resolved within the package only once the module that defines them is included. The former levels (Records, Structured, Continuous) described delivery; delivery is the submission mode of §8.1. The manifest declares the level; the profile may set the level the authority requires.
 - Record model (§4): fourteen record types. R13 Gaming Revenue Statement is one line per licence, product line, channel, currency and period, with its core fields listed first (identifiers, period, currency, recognition basis, cash stakes, refunds, cash winnings, the declared gross gaming revenue and its formula, preparer, reviewer and evidence reference) and the conditional fields after them (corrections, brand, taxonomy code, venue, player location, currency conversion, bonus quantities, withholding tax, rake, jackpots, network settlements, open-bet position, volumes, levy self-assessment, the authority's figure). R14 Venue Count is one row per venue, unit and gaming day: meters for slot machines; inventory, fills, credits and drop for tables and counters; hard and soft count and variance for the count room; the win and its formula; and a reference to where the drop was banked. The money bridge between gaming totals and payment records is stated as an identity in §4.13. R1 gains an optional venue identifier; R12 report types include the levy return.
 - Jurisdiction profiles (§5): a second block of parameters, Revenue and levy, with five parameters and a notes block: the levy formula per product line (base type, the R13 quantities that enter the base with their sign and any cap, the rate, bands or fixed amount, and the venue win formulas), recognition (stakes and winnings), period and filing (period, cut-off, due date, collector, channel, form and whose figure is the figure of record), negative periods (rule and netting scope) and aggregation (axes and product taxonomy); bonus, refund, chargeback, jackpot and tax treatments are terms of the formula. Notes carry, with their sources, what the parameters do not express. The profile may name a minimum conformance level.
 - Design principles (§3): "Revenue is reconciled to money"; "Proportionate" now refers to the four levels.
 - Mapping (§7), evidence packs (§9) and questions for authorities (§15) are shortened; §7 gains revenue and levy returns and data models, and gaming-system protocols and wager/win reporting schemas, as destinations for R13 and R14. Submission (§8): the periodic package carries the records of the declared level; the manifest carries the level. Validation (§11): the record types of the declared level present; references resolved by level; the money bridge within the profile's tolerance. Data protection (§12): R13 and R14 carry no personal data.
-- Annex B is the Register of jurisdiction profiles and is published separately, in dated editions, as CTRES_Register.pdf and CTRES_Register.docx and at ctres.org/profiles/, where each jurisdiction has its own page; the Standard keeps Annex B as a two-paragraph section that defines the Register. Register edition of 5 November 2026: ninety-seven jurisdictions — seven added: Cabo Verde, Senegal, Côte d'Ivoire, Burkina Faso, Mali, Cameroon and Nigeria (Enugu); Part 1 unchanged for the earlier ninety; Part 2, Revenue and levy, filled for every jurisdiction — the levy base and rate, the bonus and open-bet rules, the period and deadline, and the filing channel; Part 3, Submission and streams, new for every jurisdiction — the submission mode the published rules imply, its cadence or latency, the central system, gateway or data vault and whether it receives bet-level data, and the transport. All researched from published sources and offered to each authority for review; a value seen only in a secondary source is marked "(to be confirmed)". Annex C: example R13 and R14 records. Annex D: the declared level and the records of that level. Annex E: Register, core, module, conformance level, levy formula, gross and net gaming revenue, stake, winnings, bonus stake, open-bet liability, drop, hold and meters.
+- Annex B is the Register of jurisdiction profiles and is published separately, in dated editions, as CTRES_Register.pdf and CTRES_Register.docx and at ctres.org/profiles/, where each jurisdiction has its own page; the Standard keeps Annex B as a two-paragraph section that defines the Register. Register edition of 5 November 2026: ninety-seven jurisdictions - seven added: Cabo Verde, Senegal, Côte d'Ivoire, Burkina Faso, Mali, Cameroon and Nigeria (Enugu); Part 1 unchanged for the earlier ninety; Part 2, Revenue and levy, filled for every jurisdiction - the levy base and rate, the bonus and open-bet rules, the period and deadline, and the filing channel; Part 3, Submission and streams, new for every jurisdiction - the submission mode the published rules imply, its cadence or latency, the central system, gateway or data vault and whether it receives bet-level data, and the transport. All researched from published sources and offered to each authority for review; a value seen only in a secondary source is marked "(to be confirmed)". Annex C: example R13 and R14 records. Annex D: the declared level and the records of that level. Annex E: Register, core, module, conformance level, levy formula, gross and net gaming revenue, stake, winnings, bonus stake, open-bet liability, drop, hold and meters.
 - Roadmap (§14) revised around version 1.1 and the pilots. Cover: version 1.1, date, coverage and the Register edition; the watermark no longer carries a version. Annex C gains an R15 example and the same bet as two stream events. The Standard is about 26 pages; the Register about 35.
 
-## 1.0 — Annex B edition of 3 November 2026 (release v1.0.6)
+## 1.0 - Annex B edition of 3 November 2026 (release v1.0.6)
 
-- Annex B: Spain — the Sistema de Control Interno is named with its instrument (RD 1613/2011 art. 13; DGOJ data model of 6 June 2024, XSD 3.3 mandatory since 22 March 2025); the row now records that the SCI holds an operator account with GGR per game type monthly and a four-year minimum retention. Re-verified from the primary texts. The record model, fields and profile parameters are unchanged.
+- Annex B: Spain - the Sistema de Control Interno is named with its instrument (RD 1613/2011 art. 13; DGOJ data model of 6 June 2024, XSD 3.3 mandatory since 22 March 2025); the row now records that the SCI holds an operator account with GGR per game type monthly and a four-year minimum retention. Re-verified from the primary texts. The record model, fields and profile parameters are unchanged.
 
-## 1.0 — editorial revision, 3 November 2026 (release v1.0.5)
+## 1.0 - editorial revision, 3 November 2026 (release v1.0.5)
 
 - §1.3 and Annex F, which compared this text with a pre-release draft, are removed, together with the "Editions" row on the cover. The record model, fields, profile parameters and Annex B (edition of 1 November 2026) are unchanged.
 
-## 1.0 — published status, 1 November 2026 (release v1.0.4)
+## 1.0 - published status, 1 November 2026 (release v1.0.4)
 
 - Status: version 1.0 is published, open for implementation and for public comment, as a voluntary and independent standard. "Draft for consultation" is removed from the cover, the status row, the page footer and the watermark.
 - The release v1.0.2 entry below now lists the British Columbia part of the Canada profile as updated rather than reviewed, at the authority's request.
 - Annex B (edition of 1 November 2026), the record model, fields and profile parameters are unchanged.
 
-## 1.0 — Annex B edition of 1 November 2026 (release v1.0.3)
+## 1.0 - Annex B edition of 1 November 2026 (release v1.0.3)
 
 A new Annex B edition and a clarification of §13. The record model, fields and profile parameters are unchanged.
 
@@ -46,7 +50,7 @@ Reviewed by their authority:
 
 - Annex B: Czech Republic - reviewed with the Ministry of Finance (Gambling Regulation Unit, 30 October 2026); four amendments adopted as submitted: only monetary funds may be used as stakes; user-account funds paid out without undue delay, extendable to up to 60 days in justified cases; identification always mandatory when the user account is opened; the security deposit (kauce) tied to the operator rather than game types, four categories from CZK 20 million to CZK 300 million set from the gambling tax paid for the preceding period (§ 95), provided by transfer to the Ministry's account or by bank guarantee, and no longer used to cover unpaid winnings.
 
-## 1.0 — Annex B revision, 13 October 2026 (release v1.0.2)
+## 1.0 - Annex B revision, 13 October 2026 (release v1.0.2)
 
 Every profile row below was re-verified cell by cell against the primary instruments - acts, regulations, regulator standards, licence conditions and FIU rules, each opened and quoted - after a regulator's correction showed that parts of v1.0 had been written from index pages. Twenty-four of the 67 rows are updated in this release; three of them were additionally reviewed by their authority, whose corrections are adopted as submitted. The record model, fields and profile parameters are unchanged.
 
@@ -83,13 +87,13 @@ Re-verified from primary sources:
 
 Register: the review register (authority, date, attribution, cells) is kept in reviews.json and shown on the site's profiles page.
 
-## 1.0 — editorial revision, 5 October 2026 (release v1.0.1)
+## 1.0 - editorial revision, 5 October 2026 (release v1.0.1)
 
 - Status wording: CTRES is described as an independent open standard, published for consultation with authorities and industry.
 - Annex B is titled "Jurisdiction profiles"; profiles not yet reviewed by their authority are described as researched from published sources.
 - No change to the record model, fields or profile parameters.
 
-## 1.0 — publication edits, 5 October 2026
+## 1.0 - publication edits, 5 October 2026
 
 Edits made for the public release of version 1.0. The record model, the rail modules and the profiles in Annex B are unchanged.
 

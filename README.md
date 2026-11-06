@@ -18,7 +18,7 @@ Published standard, version 1.1, open for implementation and for public comment.
 |---|---|
 | `CTRES_v1.1.pdf` | The Standard, for reading and printing |
 | `CTRES_v1.1.docx` | The same text in Word format, for comments and tracked changes |
-| `CTRES_Register.pdf` | Annex B, the Register of jurisdiction profiles — the current edition (its date is on the cover); a stable file name, so links do not break between editions |
+| `CTRES_Register.pdf` | Annex B, the Register of jurisdiction profiles - the current edition (its date is on the cover); a stable file name, so links do not break between editions |
 | `CTRES_Register.docx` | The same Register in Word format |
 | `build/build_spec_universal.js` | Source of the text, except the rows of the Register; generates both Word documents |
 | `build/assets/watermark.png` | Watermark placed behind the text on every page |

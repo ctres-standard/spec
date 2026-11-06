@@ -15,8 +15,9 @@ const WM = fs.readFileSync(path.join(__dirname, 'assets', 'watermark.png'));
 
 const REGISTER = process.argv.includes('--register');
 const OUT = process.argv.filter((a) => a !== '--register')[2] || (REGISTER ? 'CTRES_Register.docx' : 'CTRES_v1.1.docx');
-const REGISTER_EDITION = '4 November 2026';
-const REGISTER_COUNT_WORDS = 'ninety';
+const REGISTER_EDITION = '5 November 2026';
+const REGISTER_COUNT_WORDS = 'ninety-seven';
+const REGISTER_COUNT = 97;
 const FONT = 'Arial';
 const W = 9746;      // A4 portrait usable width (11906 - 2*1080)
 const WL = 14678;    // A4 landscape usable width (16838 - 2*1080)
@@ -75,12 +76,12 @@ body.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text
 body.push(table(['Item', 'Detail'], [
   ['Short name', 'CTRES v1.1 — universal edition'],
   ['Status', 'Published, version 1.1. Open for implementation and for public comment. A voluntary, independent standard: it carries no regulatory force and creates no new obligations.'],
-  ['Date', '4 November 2026 (version 1.1; version 1.0 first published 2 October 2026)'],
+  ['Date', '5 November 2026 (version 1.1; version 1.0 first published 2 October 2026)'],
   [`Register edition`, `${REGISTER_EDITION} — ${REGISTER_COUNT_WORDS} jurisdictions. Annex B, the Register of jurisdiction profiles, is published separately (CTRES_Register.pdf; ctres.org/profiles/)`],
   ['Editor', 'Dmitry Skachko'],
   ['Contact', 'hello@ctres.org'],
   ['Website', 'https://ctres.org'],
-  ['Coverage', 'Every payment rail — cards, bank and instant payments, e-money, mobile money, vouchers, cash at retail, virtual assets — and the gaming revenue reconciled to the money they carry, under any jurisdiction’s rules, through jurisdiction profiles. Four conformance levels: an operator starts with the return it already files (Level 1) and adds the money behind it step by step (§10)'],
+  ['Coverage', 'Every payment rail — cards, bank and instant payments, e-money, mobile money, vouchers, cash at retail, virtual assets — and the gaming revenue reconciled to the money they carry, under any jurisdiction’s rules, through jurisdiction profiles; delivered as a periodic package or as a stream of the same records (§8.4). Four conformance levels: an operator starts with the return it already files (Level 1) and adds the money behind it step by step (§10)'],
   ['Licence to use', 'The text is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Any operator, supplier or authority may implement the Standard without fee or permission. The schema and a reference validator for structural and referential checks are published under the Apache License 2.0 at github.com/ctres-standard. Governance is set out in §13.'],
   ['Comments', 'Through the public issue tracker at github.com/ctres-standard/spec, or to hello@ctres.org. Every authority is invited to correct its own profile in the Register (Annex B); corrections an authority makes to its own profile are adopted as submitted.'],
 ], [2100, 7646]));
@@ -88,7 +89,7 @@ body.push(BR());
 
 // ---------------- CONTENTS ----------------
 body.push(H1('Contents'));
-[['', 'CTRES in one page'], ['1.', 'Purpose and status'], ['2.', 'Scope'], ['3.', 'Design principles'], ['4.', 'Record model (R1–R14)'],
+[['', 'CTRES in one page'], ['1.', 'Purpose and status'], ['2.', 'Scope'], ['3.', 'Design principles'], ['4.', 'Record model (R1–R15)'],
  ['5.', 'Jurisdiction profiles'], ['6.', 'Rail modules'], ['7.', 'Mapping to existing regulatory formats'],
  ['8.', 'Submission and access'], ['9.', 'Evidence pack'], ['10.', 'Conformance levels'], ['11.', 'Validation'],
  ['12.', 'Data protection, confidentiality and retention'], ['13.', 'Governance and versioning'], ['14.', 'Roadmap'],
@@ -102,7 +103,7 @@ body.push(BR());
 // ---------------- ONE PAGE ----------------
 body.push(H1('CTRES in one page'));
 body.push(P('CTRES is a file format in which a licensed gambling operator evidences the money it handles and the gaming revenue it declares, in one shape for every payment rail and every regulator. An operator produces a package of JSON Lines files with a manifest; the authority receives it through the channel it already uses and checks it mechanically. The Standard creates no obligation: it formats evidence of duties that already exist, and a jurisdiction profile (§5) sets the parameters — thresholds, deadlines, permitted rails, the levy base — that apply.'));
-body.push(P('Four records are the core. Everything else is a module an authority asks for when it needs it.', { after: 60 }));
+body.push(P('Four records are the core. Everything else is a module an authority asks for when it needs it: Custody, Supervision, Venue, or Wagering for an authority that receives each bet.', { after: 60 }));
 body.push(table(['Core record', 'One line per…', 'What it evidences'], [
   ['R3 Deposit / R4 Withdrawal', 'payment', 'What came in and went out, on which instrument, when it was credited or paid'],
   ['R7 Reconciliation Statement', 'funds location and period; licence and period', 'Books against statements; player balances against the funds held to cover them'],
@@ -114,28 +115,29 @@ body.push(code('(stakes_cash + stakes_bonus − stakes_refunded) − (winnings_c
 body.push(P('Adoption is stepwise. An operator declares a conformance level (§10) and the package carries at least the records of that level; the authority checks what the level allows it to check.', { after: 60 }));
 body.push(table(['Level', 'Records', 'The authority can check'], [
   ['1 — Return', 'manifest + R13', 'The return it already receives, in a structure a validator checks: schema, arithmetic, one statement per currency'],
-  ['2 — Evidence', '+ R3, R4, R7 (+ R14 for venues)', 'The money bridge: declared revenue against deposits, withdrawals and balances; venue win against the count'],
+  ['2 — Evidence', '+ R3, R4, R7 (+ R14 for venues; + R15 where the authority receives bets)', 'The money bridge: declared revenue against deposits, withdrawals and balances; venue win against the count'],
   ['3 — Custody', '+ R1, R2, R6, R10, R11', 'Where player money sits, who holds it, provider attestations, segregation'],
   ['4 — Supervision', '+ R5, R8, R9, R12', 'Checks before money moves, exceptions, incidents, reports filed elsewhere'],
 ], [1700, 2700, 5346], { size: 17 }));
 body.push(P('', { after: 40 }));
+body.push(BUL('Delivery is the profile’s choice, not the format’s: a periodic package, or the same records as a stream of events with daily checkpoints (§8.4) — seconds, hours or a day behind the fact, as the authority requires. The package remains the signed close that the stream must agree with.'));
 body.push(BUL('For an operator: Level 1 is the figures of the levy return you already file, as one R13 line per product and period; Level 2 adds the deposits, withdrawals and period balances your payment and wallet systems already hold. The schema and the validator are free (github.com/ctres-standard).'));
 body.push(BUL('For an authority: confirm your profile in the Register (Annex B), choose the level you require, and receive packages through your existing channel. The Standard proposes no new system and moves no data across borders (§8).'));
-body.push(BUL('Where to look: the record model is §4; profiles and the levy parameters, §5; validation, §11; the Register of ninety jurisdiction profiles is published separately and at ctres.org/profiles/. Questions and corrections: hello@ctres.org.'));
+body.push(BUL(`Where to look: the record model is §4; profiles and the levy parameters, §5; validation, §11; the Register of ${REGISTER_COUNT_WORDS} jurisdiction profiles is published separately and at ctres.org/profiles/. Questions and corrections: hello@ctres.org.`));
 body.push(BR());
 
 // ---------------- 1 ----------------
 body.push(H1('1. Purpose and status'));
 body.push(H2('1.1 The problem this Standard addresses'));
 body.push(P('Every gambling regulator asks operators the same six questions about money. Did it come from the player? Was it checked before it was accepted? Was it credited correctly? Where did it go when it left? Is the money owed to players actually there? What did the house win, by product and period, and does it match the money? Each regulator asks in its own format, on its own calendar and through its own channel.'));
-body.push(P('The research behind this version reviewed the published rules of ninety jurisdictions on six continents (the Register, Annex B). The questions are the same in all of them; what differs is a small set of parameters — which rails are permitted, at what amounts checks and reports are triggered, over what window amounts are aggregated, how quickly a payout must be made, where data is held and for how long, and, for revenue, what counts as a stake, a winning and a bonus and over what period the house win is levied. Without a common format an operator licensed in several jurisdictions rebuilds the same evidence for each; more than half of the jurisdictions reviewed run or are building a central system, data vault or state register, each defining the operator-side data afresh; and an operator that has implemented its controls well cannot prove it more cheaply than one that has not. CTRES defines the shape of the evidence once and lets each jurisdiction set its own parameters.'));
+body.push(P(`The research behind this version reviewed the published rules of ${REGISTER_COUNT_WORDS} jurisdictions on six continents (the Register, Annex B). The questions are the same in all of them; what differs is a small set of parameters — which rails are permitted, at what amounts checks and reports are triggered, over what window amounts are aggregated, how quickly a payout must be made, where data is held and for how long, and, for revenue, what counts as a stake, a winning and a bonus and over what period the house win is levied. Without a common format an operator licensed in several jurisdictions rebuilds the same evidence for each; more than half of the jurisdictions reviewed run or are building a central system, data vault or state register, each defining the operator-side data afresh; and an operator that has implemented its controls well cannot prove it more cheaply than one that has not. CTRES defines the shape of the evidence once and lets each jurisdiction set its own parameters.`));
 
 body.push(H2('1.2 What this Standard is not'));
 body.push(BUL('It creates no obligation. It formats evidence of duties that already exist under each jurisdiction’s law and licence conditions.'));
 body.push(BUL('It does not replace any authority’s central system, reporting portal or financial intelligence reporting schema, such as goAML, the FINTRAC reporting API, Infostat-UIF or SIGAP. It is the operator-side evidence layer from which those submissions can be produced (§7).'));
 body.push(BUL('It is independent of any authority. Every reference to a jurisdiction’s rules is a reading of published sources, offered to the authority concerned for review.'));
 body.push(BUL('It names no vendor and requires none.'));
-body.push(BUL('It does not cover records of individual bets, rounds and game outcomes, which it references but does not reproduce; totals of stakes and winnings by product and period are in scope (R13, R14). It does not cover marketing data or behavioural analytics.'));
+body.push(BUL('It does not cover game content or outcomes. Totals of stakes and winnings by product and period are in scope (R13, R14); the money facts of each bet are in scope only through the optional Wagering module (R15), for authorities that receive bet-level data. It does not cover marketing data or behavioural analytics.'));
 
 // ---------------- 2 ----------------
 body.push(H1('2. Scope'));
@@ -145,8 +147,9 @@ body.push(BUL('Core: player deposits and withdrawals on any rail, with taxes lev
 body.push(BUL('Custody module: every location where the operator holds money, the instruments linked to players, movements between the operator’s own locations, the providers that handle player money and their attestations (R1, R2, R6, R10, R11).'));
 body.push(BUL('Supervision module: checks that precede the movement of money — identity and holder verification, sanctions, eligibility and exclusion registers, limits, source of funds, fraud and blockchain analytics — exceptions, incidents, and references to reports filed with other authorities (R5, R8, R9, R12).'));
 body.push(BUL('Venue module: for land-based venues, the counts behind the revenue line — meters, drop, fills, credits and the count-room totals (R14).'));
+body.push(BUL('Wagering module: for authorities that receive bet-level data, one record per bet, round, ticket or hand — stake, winnings, status and times, by pseudonymous player (R15).'));
 body.push(H2('2.2 Out of scope'));
-body.push(P('Records of individual bets, rounds and game outcomes, which the revenue statement references but does not reproduce; marketing and affiliate data; behavioural analytics; and the content of suspicious transaction reports, which remains under the confidentiality rules of each jurisdiction (§12).'));
+body.push(P('Game content and outcomes — selections, results, game state — beyond the money facts of a bet that R15 carries where the profile asks for it; marketing and affiliate data; behavioural analytics; and the content of suspicious transaction reports, which remains under the confidentiality rules of each jurisdiction (§12).'));
 
 // ---------------- 3 ----------------
 body.push(H1('3. Design principles'));
@@ -161,13 +164,14 @@ body.push(table(['Principle', 'What it means in practice'], [
   ['Visible gaps', 'Where a control left no record, the field is reported as not_recorded rather than omitted, so that an absence of evidence is visible and is not mistaken for an export error.'],
   ['Pseudonymous by default', 'Periodic submissions carry player references, masked account numbers and hashed phone numbers — never identity documents.'],
   ['Proportionate', 'Four conformance levels (§10) let an operator start with the return it already files and add the money behind it step by step; the profile sets the level an authority requires.'],
+  ['Two cadences, one record', 'The same records are delivered as a periodic package or as a stream of events (§8.4). Timeliness is a profile parameter, not a property of the format; the period package remains the signed close that the stream must agree with.'],
   ['Deterministic and verifiable', 'The same inputs produce the same package. Every package carries a manifest with a hash per file and may carry a signature, so a submission can be proved unaltered.'],
   ['Currency-aware', 'Amounts are decimal strings with an ISO 4217 code or an asset identifier, plus a reporting-currency value with its rate and source, so that thresholds in any currency can be applied. Thresholds set in indexed units — minimum wages, UMA, UIT, base units — are converted with the value in force on the transaction date, which the profile records.'],
 ], [2500, 7246]));
 
 // ---------------- 4 ----------------
-body.push(H1('4. Record model (R1–R14)'));
-body.push(P('Fourteen record types. Each record is one line of JSON; each file holds one record type for one period. Four of them — R3, R4, R7 and R13, with the package manifest — are the core; the others form three modules, Custody (R1, R2, R6, R10, R11), Supervision (R5, R8, R9, R12) and Venue (R14), which the conformance levels of §10 add in steps. The fields listed below are the ones an implementation needs; rail-module fields are described in §6, and the complete catalogue is maintained as a machine-readable schema (Annex A), published at github.com/ctres-standard/schema.'));
+body.push(H1('4. Record model (R1–R15)'));
+body.push(P('Fifteen record types. Each record is one line of JSON; each file holds one record type for one period, and the same line travels as an event in a stream (§8.4). Four of them — R3, R4, R7 and R13, with the package manifest — are the core; the others form four modules, Custody (R1, R2, R6, R10, R11), Supervision (R5, R8, R9, R12), Venue (R14) and Wagering (R15), which the conformance levels of §10 add in steps or the profile asks for. The fields listed below are the ones an implementation needs; rail-module fields are described in §6, and the complete catalogue is maintained as a machine-readable schema (Annex A), published at github.com/ctres-standard/schema.'));
 body.push(table(['ID', 'Record', 'Core or module', 'The question it answers'], [
   ['R1', 'Funds Location', 'Custody', 'Where does the operator hold money, for what purpose, and under what protection?'],
   ['R2', 'Payment Instrument Link', 'Custody', 'Does this instrument belong to this player, and may it receive payouts?'],
@@ -183,6 +187,7 @@ body.push(table(['ID', 'Record', 'Core or module', 'The question it answers'], [
   ['R12', 'Report Reference', 'Supervision', 'Which reports were filed elsewhere, triggered by which records, against which deadline?'],
   ['R13', 'Gaming Revenue Statement', 'Core', 'What did the house win, by product and period?'],
   ['R14', 'Venue Count', 'Venue', 'What did the gaming floor count — meters, drop, fills, credits?'],
+  ['R15', 'Bet Event', 'Wagering', 'What was staked and paid on each bet, by which player, on which product, and when?'],
 ], [700, 2400, 1300, 5346]));
 
 body.push(H2('4.1 R1 Funds Location'));
@@ -298,7 +303,7 @@ body.push(P('For one licence, currency and period — with stakes recognised whe
 body.push(code('(stakes_cash + stakes_bonus − stakes_refunded) − (winnings_cash + winnings_bonus) = deposits − withdrawals − Δ player balances − Δ open-bet liability + bonus_granted − bonus_expired'));
 body.push(P('Deposits and withdrawals are the amounts posted to player accounts (credited_amount in R3 and R4, bounded by credited_at), so that a withdrawal counts when the account is debited and gross of any tax withheld at payout; player balances are the R7 totals, bonus wallets included; the open-bet liability is the R7 open-bet position and applies where stakes are recognised when settled — where they are recognised when placed, the term is omitted. The validator derives the right-hand side from R3, R4 and R7 and compares it with the statements within the tolerance the profile sets; a difference outside tolerance is an exception (R8).'));
 body.push(P('The left-hand side is the gross gaming revenue from which the profile’s levy base is computed (§5); the right-hand side is what the deposits, withdrawals, player balances, open bets and bonus movements in the same package show. The bridge is tested where the package carries R3 and R4 in full; where the profile allows a sample (§8.1), it is tested on demand against the operator’s full records (§9). Where the authority computes the figure in its own system, authority_figure_ref carries that figure and the difference is reported in the same way. A declared figure can therefore be tested rather than trusted.'));
-body.push(P('Records of individual bets, rounds and game outcomes are not part of this Standard. They remain where they are produced — in the operator’s gaming platform or in the authority’s data vault — and the statement points to the platform report behind each line through evidence_ref, as R5 points to the report behind a check.'));
+body.push(P('Records of individual bets, rounds and game outcomes stay where they are produced — in the operator’s gaming platform or in the authority’s data vault — and the statement points to the platform report behind each line through evidence_ref, as R5 points to the report behind a check. Where the authority receives bet-level data through the Wagering module (R15, §4.15), each line of R13 is the aggregation of its bets under the profile’s recognition parameter, and the validator computes the line rather than accept it.'));
 body.push(P('Core fields — every statement carries them:', { after: 60 }));
 body.push(fieldTable([
   ['statement_id', 'string', 'M', 'Identifier'],
@@ -356,6 +361,35 @@ body.push(fieldTable([
   ['prepared_by / reviewed_by', 'string', 'M', 'As in R7'],
 ]));
 
+body.push(H2('4.15 R15 Bet Event (Wagering module)'));
+body.push(P('Where an authority receives bet-level data — a central system that registers each bet, a tax feed of stakes and payouts, a monitoring system for machines — R15 carries the money facts of each bet, round, ticket or hand: who staked, by pseudonymous reference; on which product and channel; how much, in cash and in bonus credits; when it was placed; and, once it is settled, voided or cashed out, what was paid and when. It carries no game content — no selections, results or game state; game_ref points to the platform’s own record, as evidence_ref points to a report. A bet is one record whose state changes: in a stream it is re-emitted on settlement (§8.4); in a package only its final state appears. Under “Computed, not declared” (§3), where R15 is present each R13 line is the aggregation of its bets under the profile’s recognition parameter — stakes by placed_at or by settled_at, winnings by settled_at — and the validator computes the line rather than accept it. The module is optional at every level (§10); the profile says whether the authority expects it (§5). Volumes are those of the operator’s platform: the format is one line per bet, and a stream carries them as they occur.'));
+body.push(P('Core fields — every bet event carries them:', { after: 60 }));
+body.push(fieldTable([
+  ['bet_id', 'string', 'M', 'Identifier of the bet, round, ticket or hand in the operator’s platform'],
+  ['player_ref / player_ref_scope', 'string', 'M', 'As in R2'],
+  ['product_line', 'string', 'M', 'Operator’s product or game-type code, as in R13'],
+  ['channel', 'enum', 'M', 'online | retail | venue'],
+  ['currency', 'string', 'M', 'Currency of the amounts'],
+  ['stake', 'decimal', 'M', 'Stake funded from real money (0 permitted for a free bet)'],
+  ['placed_at', 'datetime', 'M', 'When the bet was accepted'],
+  ['status', 'enum', 'M', 'open | settled | void | cashed_out'],
+]));
+body.push(P('Conditional and optional fields:', { before: 120, after: 60 }));
+body.push(fieldTable([
+  ['stake_bonus', 'decimal', 'C', 'Stake funded from bonus or promotional credits'],
+  ['winnings / winnings_bonus', 'decimal', 'C', 'Paid or credited at settlement, gross of any withholding tax; absent or 0 while the bet is open; non-cashable credits separately'],
+  ['settled_at', 'datetime', 'C', 'When the bet was settled, voided or cashed out — required for those statuses'],
+  ['void_reason', 'string', 'C', 'Required where status is void'],
+  ['jurisdiction_category', 'string', 'C', 'Code from the profile’s product taxonomy, where the profile publishes one'],
+  ['venue_id', 'string', 'C', 'Venue the bet was taken in (venue_id in R1), where channel is venue'],
+  ['game_ref', 'string', 'C', 'Game, event or market identifier in the operator’s platform — never its content'],
+  ['odds', 'decimal', 'O', 'Price of the bet, where the product has one'],
+  ['rake_and_fees / jackpot_contribution', 'decimal', 'C', 'Where the product is commission-based or feeds a progressive jackpot'],
+  ['ledger_entry_refs', 'array', 'C', 'The ledger entries that debited the stake and credited the winnings'],
+  ['authority_reference', 'string', 'C', 'Identifier a central system issued for this bet, where one exists'],
+  ['evidence_ref', 'string', 'C', 'Where the platform record behind the bet is retained'],
+]));
+
 // ---------------- 5 ----------------
 body.push(H1('5. Jurisdiction profiles'));
 body.push(P('A profile is a short configuration, in the machine-readable structure defined by the schema (Annex A), that turns the neutral record model into one authority’s rule set. It contains parameters only and never adds fields. The table lists the parameters, with examples drawn from the profiles in the Register (Annex B).'));
@@ -368,7 +402,7 @@ body.push(table(['Parameter', 'Examples from the Register'], [
   ['Payout time limits', '120 minutes (Brazil); 48 hours (Buenos Aires Province); 5 working days (Malta, Gibraltar)'],
   ['Taxes at the point of payment', 'Excise on deposits and withholding on winnings (Kenya); withholding on winnings (Malawi, Lagos, Uganda), at rates that differ by product (Tanzania); withholding on withdrawals (Georgia)'],
   ['Player-funds protection and coverage', 'At least 90% of liabilities in the account plus funds in transit (Malta); shortfall cured within 3 business days (Greece); separate estate covering balances and open bets (Brazil)'],
-  ['Submission mode and cadence', 'Real-time central system (Italy, Greece, Bulgaria, Serbia, Kenya); hourly financial summaries (Portugal); daily and monthly files (Brazil, Spain); monthly player-funds report (Malta); quarterly returns (United Kingdom, Gibraltar)'],
+  ['Submission mode, cadence and streams', 'Real-time central system (Italy, Greece, Bulgaria, Serbia, Kenya — a stream with a latency of seconds and bet-level data, R15); hourly financial summaries (Portugal — R13 interim statements hourly); daily and monthly files (Brazil, Spain — daily checkpoints and snapshots); monthly player-funds report (Malta); quarterly returns (United Kingdom, Gibraltar). The profile sets the mode (periodic, continuous or both), the latency per record type, the checkpoint cadence, whether bet-level data is expected, and the transport — push, pull or the authority’s own protocol (§8.4)'],
   ['Cross-operator limits and registers', 'Real-time query to a central limit file before each deposit (Germany: €1,000 a month); weekly cap per operator, raised only after a credit-register check (Belgium); per-player monthly limits in a state register (Kazakhstan, Uzbekistan)'],
   ['Eligibility screening at payment', 'Self-exclusion registers (Denmark, Sweden, Netherlands, Germany, Spain and many others); insolvency and benefit recipients (Czech Republic); debtors (Kazakhstan); welfare recipients (Brazil); minimum age of 25 (Georgia, Uganda); biometric check on each stake and payout claim (Ghana)'],
   ['Mandatory hubs and gateways', 'Payments or bets that must pass through a state register or gateway (Uzbekistan, Kazakhstan; planned in Uganda), with a unique identifier per transaction (Ukraine)'],
@@ -382,15 +416,16 @@ body.push(table(['Parameter', 'Examples from the Register'], [
 body.push(P('', { after: 60 }));
 body.push(P('A second block, Revenue and levy, fixes how the jurisdiction defines and collects the operator-level levy, so that the gaming revenue statement (R13) and the venue count (R14) can be computed under the profile rather than read. It has five parameters and a notes block. The parameters are what a validator reads; the notes carry, with their sources, what the parameters do not express. Every value below is in force in at least one of the jurisdictions reviewed; the examples are read from published sources.'));
 body.push(table(['Parameter — revenue and levy', 'What it fixes, with examples'], [
-  ['Levy formula, per product line', 'The base type — gross gaming revenue for the main products (71 of the 90 profiles); turnover (Germany, 5.3% of stakes; Poland, 12% of betting stakes); a fixed amount per machine or table (Latvia, Romania); commission for exchanges and poker (Malta, Spain, United Kingdom); fee bands (Gibraltar, Alderney); the prize pool (Hungary, lotteries) — then the R13 quantities that enter the base, each with its sign and any cap, and the rate, bands or fixed amount. Bonus, refund, chargeback, jackpot and tax treatments are terms of the formula, not separate switches: bonus-funded stakes in (Malta, Denmark, Romania, Ghana, Brazil) or out (Ontario); bonus credits counted at face value with no deduction (United Kingdom, Denmark, Gibraltar, Ireland), deducted when credited (Colombia, Ontario) or deducted with a cap (Michigan, by year; New York, by product; New Jersey, above an industry-wide threshold); returned stakes deducted (Germany, Czech Republic, Hungary, Mexico, Colombia, New Jersey) or not (Denmark); chargebacks deductible (Gibraltar, Delaware) or no relief (United Kingdom, Philippines); progressive contributions deductible when made (Nevada, Philippines, South Africa — Western Cape and Gauteng) or when paid (Denmark, Romania); goods and services tax in the base (Australia), value added tax out of it (Austria, Chile), the levy itself netted from the base (Germany, Mauritius). For venues, the win formula per unit type (§4.14): the table drop formula (Nevada, Mississippi, New York, Philippines, Croatia, Montenegro, South Africa — Western Cape, with coupon face value added), the slot meter or slot drop formula (Nevada, Ghana, Kenya), chips bought less chips exchanged (Czech Republic).'],
+  ['Levy formula, per product line', 'The base type — gross gaming revenue for the main products (71 of the ninety profiles reviewed for revenue in November 2026); turnover (Germany, 5.3% of stakes; Poland, 12% of betting stakes); a fixed amount per machine or table (Latvia, Romania); commission for exchanges and poker (Malta, Spain, United Kingdom); fee bands (Gibraltar, Alderney); the prize pool (Hungary, lotteries) — then the R13 quantities that enter the base, each with its sign and any cap, and the rate, bands or fixed amount. Bonus, refund, chargeback, jackpot and tax treatments are terms of the formula, not separate switches: bonus-funded stakes in (Malta, Denmark, Romania, Ghana, Brazil) or out (Ontario); bonus credits counted at face value with no deduction (United Kingdom, Denmark, Gibraltar, Ireland), deducted when credited (Colombia, Ontario) or deducted with a cap (Michigan, by year; New York, by product; New Jersey, above an industry-wide threshold); returned stakes deducted (Germany, Czech Republic, Hungary, Mexico, Colombia, New Jersey) or not (Denmark); chargebacks deductible (Gibraltar, Delaware) or no relief (United Kingdom, Philippines); progressive contributions deductible when made (Nevada, Philippines, South Africa — Western Cape and Gauteng) or when paid (Denmark, Romania); goods and services tax in the base (Australia), value added tax out of it (Austria, Chile), the levy itself netted from the base (Germany, Mauritius). For venues, the win formula per unit type (§4.14): the table drop formula (Nevada, Mississippi, New York, Philippines, Croatia, Montenegro, South Africa — Western Cape, with coupon face value added), the slot meter or slot drop formula (Nevada, Ghana, Kenya), chips bought less chips exchanged (Czech Republic).'],
   ['Recognition', 'When a stake enters the base — when the bet is accepted (United Kingdom, Sweden, Germany, Australia — New South Wales); when it is settled or the cash is received (Nevada counter games, Mexico, Peru, Hungary, Poland); when the result is known (Colombia, South Africa — Eastern Cape) — and when winnings leave it: when credited (Sweden); only where withdrawable and notified (United Kingdom); when paid or payable (Australia — Victoria; Mauritius); non-convertible credits excluded (New South Wales); the returned stake counted inside the payout (Philippines, Angola). R13 carries the pair as stakes_basis and winnings_basis.'],
   ['Period and filing', 'The period and its cut-off: monthly in about sixty profiles, due between the 5th (Serbia, North Macedonia) and the end of the following month (Cyprus, Angola); weekly (South Africa — Gauteng, Tanzania and Uganda by Wednesday; Philippines; New York); quarterly (United Kingdom, Spain, Czech Republic, Kazakhstan); annual with monthly instalments (Malta, New Jersey); gaming-day cut-offs and Sunday-to-Saturday weeks (Philippines, Iowa, Nebraska); estimates with a later true-up (Romania, Switzerland, Liechtenstein). The collector — tax authority (United Kingdom, Spain, Netherlands, Germany, Denmark, Kenya, Brazil), regulator (Malta, Gibraltar, Serbia, Ontario, Nevada) or both (Italy, Romania, Bulgaria, Philippines) — the channel and form (Spain modelo 763; Poland POG-5; Nevada NGC-01 and NGC-31; New Jersey DGE-101, 105 and 107; Latvia EDS; the URA portal in Uganda), and whose figure is the figure of record: the operator’s declaration, or the authority’s own computation (Italy, Colombia, Ontario; Kenya and Uganda through central monitoring), with an attestation layer where one exists (auditor-attested figures in Norway and Malta; an accuracy certificate in Botswana; six-monthly certification in Greece).'],
   ['Negative periods', 'A period in which winnings exceed stakes: the loss carried forward within the product or class (United Kingdom, Nevada, Michigan, Ghana, Iowa, South Africa — Gauteng); floored at zero per unit (Montenegro, per shop; Colombia); no netting across products (Poland, Czech Republic, the United Kingdom betting duty classes); a minimum per unit (Slovakia, Serbia, North Macedonia). The netting scope — line, product class or licence — goes with the rule.'],
-  ['Aggregation', 'The axes along which R13 lines are split, required in 62 of the 90 profiles: by licence type (Denmark, Malta, Bulgaria, Romania, Tanzania); by game within a licence (Czech Republic, eleven partial bases; Poland; Hungary; Nevada; New Jersey); by channel (Czech Republic, Italy, Portugal, Austria, Ukraine); by premises, table or machine, daily (Croatia, Montenegro, Serbia, Switzerland, Nevada); by player residence or territory (Spain, Latvia, Colombia, Malta, South Africa); by currency, with a conversion rule (Czech Republic, Zimbabwe). The profile carries the jurisdiction’s product code list, versioned — Spain, Denmark, Ontario and Italy each define their own.'],
+  ['Aggregation', 'The axes along which R13 lines are split, required in 62 of the ninety profiles reviewed for revenue in November 2026: by licence type (Denmark, Malta, Bulgaria, Romania, Tanzania); by game within a licence (Czech Republic, eleven partial bases; Poland; Hungary; Nevada; New Jersey); by channel (Czech Republic, Italy, Portugal, Austria, Ukraine); by premises, table or machine, daily (Croatia, Montenegro, Serbia, Switzerland, Nevada); by player residence or territory (Spain, Latvia, Colombia, Malta, South Africa); by currency, with a conversion rule (Czech Republic, Zimbabwe). The profile carries the jurisdiction’s product code list, versioned — Spain, Denmark, Ontario and Italy each define their own.'],
   ['Notes', 'Free text, each with its source, for what the parameters do not express: the scope of a stake (entry and admission fees in the base in the Czech Republic, the Netherlands and Malawi; chips bought rather than cash staked in the Czech Republic and the Philippines; deposits deemed stakes in Pennsylvania interactive gaming); winnings gross or net of the tax withheld at payout, wherever one exists (Malawi, Uganda, Tanzania, Nigeria); expired credits (Romania, New Jersey, West Virginia); uncollectible receivables capped (Virginia, 2%) and markers counted in table win (Nevada, Delaware); tips and tickets in venues (Croatia, Montenegro, Denmark; expired tickets 25% in Nevada); and whether the authority expects per-transaction data behind the statement (Romania, Serbia, Colombia, Denmark, Portugal, Ukraine, Belarus) or aggregates only (United Kingdom, Sweden, Netherlands), which decides whether R13 reconciles to the transaction records line by line or by totals.'],
 ], [2500, 7246]));
 body.push(P('The validator computes the base of each R13 line as the signed sum of the quantities the formula names, applies the rate, bands or fixed amount, the negative-period rule and the aggregation, and compares the result with the operator’s declared figure, rather than accept the declaration; where the base is fixed per machine or table, it counts the unit rows of R14. Where the authority computes the figure in its own system, the profile says so, R13 carries that figure as authority_figure_ref, and the difference between the two is an exception (R8).'));
 body.push(P('Profiles carry effective dates, so a new rule, a market opening or a change of regulator becomes a new profile version rather than an edit — Finland’s licensing from July 2027 and Latvia’s transfer of supervision to its tax authority are examples. Where a market is closed to online gambling, as in India and Kosovo, the profile covers payment-side blocking only.'));
+body.push(P('The submission parameters of a profile — mode, latency, checkpoint cadence, whether bet-level data is expected, and transport (§8.4) — are read from Part 3 of the Register.'));
 body.push(P('Profiles belong to the authorities. The editor publishes a profile as confirmed only when the authority concerned has reviewed it; until then it is marked as researched from published sources, as most profiles in the Register are today. Where a federal or provincial system has several licensing bodies, a profile may inherit from a shared base and override only what differs, so that provinces or states agree the common part once.'));
 
 // ---------------- 6 ----------------
@@ -426,18 +461,30 @@ body.push(H1('8. Submission and access'));
 body.push(H2('8.1 Modes'));
 body.push(P('The profile chooses the mode. None of them adds a channel.'));
 body.push(table(['Mode', 'When', 'Contents'], [
-  ['Continuous', 'Where the authority runs a central system or requires real-time access', 'Records are generated as events occur. The authority’s system remains the channel; CTRES is the operator-side source and audit trail.'],
+  ['Continuous', 'Where the authority runs a central system or requires real-time or near-real-time data', 'The same records as a stream of events, as they occur, with sequence numbers and daily checkpoints (§8.4); the period package remains the close. The authority’s system remains the channel; CTRES is the operator-side source and audit trail.'],
   ['Periodic package', 'On the profile’s cadence — monthly, quarterly or semi-annual', 'The records of the declared conformance level (§10): R13 at Level 1; R3, R4, R7 and R13 at Level 2, with R14 where the licence covers venues; the Custody module from Level 3; the Supervision module at Level 4 — with the conformance declaration. R2 to R6 as a full extract or a sample, as the profile sets'],
   ['On demand', 'Within the profile’s deadline for information requests', 'The evidence pack (§9), per player, per transaction or per period'],
   ['Incident', 'Within the profile’s incident deadline', 'R9, with the affected records referenced by identifier'],
 ], [2000, 3000, 4746]));
 body.push(H2('8.2 Formats and integrity'));
-body.push(BUL('JSON Lines, UTF-8, one record per line, one record type per file. A CSV profile with identical field names is permitted at Level 1.'));
+body.push(BUL('JSON Lines, UTF-8, one record per line, one record type per file. A CSV profile with identical field names is permitted at Level 1. A stream carries the same lines inside an event envelope (§8.4).'));
 body.push(BUL('Timestamps in ISO 8601 with an explicit offset. Amounts as decimal strings, never floating point. Currencies as ISO 4217 codes; virtual assets by chain and contract.'));
 body.push(BUL('Every package carries manifest.json: the name and version of the Standard (standard_version — 1.1 for any package that lists an R13 or R14 file; a package without them may still declare 1.0), the package identifier, licensee, licensing authority and licence, profile identifier and version, the declared conformance level (§10), period, one entry per file with its record type, record count and SHA-256 hash, and the generating software and version. The SHA-256 of manifest.json is the package fingerprint: a receipt that quotes it proves which package was submitted. The manifest may be signed with the operator’s certificate where the profile requires.'));
 body.push(BUL('Corrections are submitted as a new package that supersedes an earlier one by identifier and reason, so that the record of what was known when is preserved.'));
 body.push(H2('8.3 Transport and location'));
 body.push(P('Through the authority’s existing channel. Periodic packages are pseudonymous, so a package seen in transit reveals no player identity. Data location follows the profile. The Standard proposes no new channel and moves no data across borders.'));
+body.push(H2('8.4 Streaming'));
+body.push(P('A stream delivers the same records as a periodic package, one event per line, as they occur or at the cadence the profile sets. Nothing in a record changes between the two; an event is a record in an envelope:'));
+body.push(code('{"stream_id":"LIC-A:R3","sequence":10482,"emitted_at":"2026-11-05T10:15:02Z","licence_number":"LIC-A","standard_version":"1.1","profile_id":"XJ-2026-1","record_type":"R3","op":"create","record":{"tx_id":"D-2026-104511","player_ref":"P-20931", "…":"the deposit exactly as it would appear in a package"}}'));
+body.push(BUL('Envelope. stream_id names the stream — by convention licence and record type; sequence is strictly increasing per stream, without gaps; emitted_at is when the event left the operator; licence_number, standard_version and, optionally, profile_id make each line self-describing; record_type names the record; op is create for the first emission of a record identifier, update for the whole record re-sent when its state changes — a withdrawal paid, an exception closed, a bet settled — and void for a record withdrawn, with a reason. Delivery is at least once: a receiver ignores a repeated sequence with identical bytes and flags one with different bytes.'));
+body.push(BUL('What streams. R3, R4, R5, R6, R8, R9 and R15 as events, as they occur; R1, R2, R10, R11 and R12 on creation and change; R7, R13 and R14 as snapshots at their cut-off — R13 with statement_kind interim for hourly or daily statements, which the period statement later supersedes.'));
+body.push(BUL('Checkpoints. At least once per gaming day per stream the operator emits a checkpoint: the first and last sequence, the event count and the SHA-256 of the event lines as transmitted. The checkpoints of a period are listed in the manifest of the period package. A checkpoint is to a stream what the manifest hash is to a package: a receipt that quotes it proves what was received. No per-event hash or signature is required; integrity rests on the transport, the sequence and the checkpoint, which may be signed.'));
+body.push(BUL('Latency. The profile sets, per record type, how soon after the fact an event must be emitted — seconds for a central system, an hour for summaries, a day for snapshots — and the checkpoint cadence. A regime that receives files daily is a stream with a daily checkpoint; a regime that receives each payment within a minute is the same stream with a shorter latency.'));
+body.push(BUL('Reconciliation. The period package carries the final state of every record streamed in the period, and the stream’s checkpoints. The validator checks that the two agree (§11): a streamed record missing from the package, a package record never streamed, a final state that differs, or a checkpoint that does not match is a finding; interim statements sum to the period statement within the profile’s tolerance.'));
+body.push(BUL('Transport. The authority’s existing channel, as for packages (§8.3). Where none exists, the schema repository publishes a reference interface: push — the operator posts events to the authority’s endpoint and receives the last accepted sequence; pull — the authority reads events and checkpoints from the operator’s endpoint from a given sequence, the data-vault model. An authority’s own protocol may carry the envelope as its payload. Authentication is the authority’s choice; the Standard models none.'));
+body.push(BUL('Pre-authorisation. A hub that must be queried before money moves or a bet is accepted — a limit file, an exclusion register, a state gateway — is not a stream. Its response is recorded as a check (R5, performed by the authority system) and the identifier it issued as authority_reference, so that the order of check and event is evidenced in the stream and in the package alike.'));
+body.push(code('{"stream_id":"LIC-A:R3","sequence":11241,"emitted_at":"2026-11-06T00:05:00Z","licence_number":"LIC-A","standard_version":"1.1","record_type":"checkpoint","op":"create","record":{"stream_id":"LIC-A:R3","licence_number":"LIC-A","period_start":"2026-11-05T00:00:00Z","period_end":"2026-11-05T23:59:59Z","first_sequence":10001,"last_sequence":11240,"event_count":1240,"chain_hash":"3f9c…e1","generated_at":"2026-11-06T00:05:00Z"}}'));
+
 
 // ---------------- 9 ----------------
 body.push(H1('9. Evidence pack'));
@@ -447,7 +494,7 @@ body.push(P('An auditor can sample directly from these packs. An operator that c
 
 // ---------------- 10 ----------------
 body.push(H1('10. Conformance levels'));
-body.push(P('The record model has a core and three modules. The core is the package manifest with R3 Deposit, R4 Withdrawal, R7 Reconciliation Statement and R13 Gaming Revenue Statement: the money that came in and went out, the balances, and the revenue declared on them. The Custody module (R1, R2, R6, R10, R11) says where player money sits and who holds it; the Supervision module (R5, R8, R9, R12) carries the checks, exceptions, incidents and the reports filed elsewhere; the Venue module (R14) carries the count behind a land-based revenue line. Four conformance levels add them in steps, so that an operator can start from the return it already files and an authority can ask for exactly as much evidence as it will use.'));
+body.push(P('The record model has a core and three modules. The core is the package manifest with R3 Deposit, R4 Withdrawal, R7 Reconciliation Statement and R13 Gaming Revenue Statement: the money that came in and went out, the balances, and the revenue declared on them. The Custody module (R1, R2, R6, R10, R11) says where player money sits and who holds it; the Supervision module (R5, R8, R9, R12) carries the checks, exceptions, incidents and the reports filed elsewhere; the Venue module (R14) carries the count behind a land-based revenue line; the Wagering module (R15) carries each bet where the authority receives bet-level data. Four conformance levels add them in steps, so that an operator can start from the return it already files and an authority can ask for exactly as much evidence as it will use.'));
 body.push(table(['Level', 'Records required (minimum)', 'What the authority can check', 'Typical operator'], [
   ['Level 1 — Return', 'manifest + R13', 'The return it already receives, in a structure a validator checks: schema, the arithmetic of each line under its formula, one statement per currency, corrections that reference what they correct', 'Any operator, from the figures of its levy return; CSV permitted (§8.2)'],
   ['Level 2 — Evidence', 'Level 1 + R3, R4, R7; + R14 where any R13 line is a venue line', 'The money bridge (§4.13): declared revenue against deposits, withdrawals and period balances; the venue win against the count, and the drop against what was banked', 'An online operator with a player wallet; a venue with a count room'],
@@ -455,9 +502,9 @@ body.push(table(['Level', 'Records required (minimum)', 'What the authority can 
   ['Level 4 — Supervision', 'Level 3 + R5, R8, R9, R12', 'Checks before money moves, exceptions to closure with ageing, incidents against their deadlines, reports filed elsewhere — the full model', 'Operators under AML supervision duties; operators connected to a central system'],
 ], [1700, 2300, 3546, 2200], { cantSplit: true }));
 body.push(P('', { after: 40 }));
-body.push(BUL('Any record type may be included at any level; the level fixes the minimum set. The profile may set the level the authority requires (§5, minimum_conformance_level).'));
+body.push(BUL('Any record type may be included at any level; the level fixes the minimum set. The profile may set the level the authority requires (§5, minimum_conformance_level). The Wagering module (R15) is optional at every level; the profile says whether the authority expects it.'));
 body.push(BUL('Field requirements inside a record do not change with the level. At Levels 1 and 2 the instrument, provider, location and check identifiers that R3, R4, R7 and R14 carry are the operator’s own identifiers: present in the record, resolved within the package only once the module that defines them is included; check_ids may be empty.'));
-body.push(BUL('The package manifest declares the level (conformance_level_declared); the reference validator checks that the records of the declared level are present and resolves references by level (§11). An operator declares its level in the conformance statement at Annex D, signed by the responsible officer. Delivery — files on request, periodic packages or a continuous feed — is the submission mode of §8.1 and is independent of the level.'));
+body.push(BUL('The package manifest declares the level (conformance_level_declared); the reference validator checks that the records of the declared level are present and resolves references by level (§11). An operator declares its level in the conformance statement at Annex D, signed by the responsible officer. Delivery — files on request, a periodic package or a stream of the same records (§8.4) — is the submission mode of §8.1 and is independent of the level.'));
 
 // ---------------- 11 ----------------
 body.push(H1('11. Validation'));
@@ -466,16 +513,17 @@ body.push(table(['Class', 'Question it answers', 'Examples'], [
   ['Structural', 'Is the package well formed?', 'Required fields present; types and enumerations valid; manifest hashes match the files; the record types of the declared conformance level present (§10); R13 and R14 conform to their schemas, one statement per currency'],
   ['Referential', 'Does the package hold together?', 'Every payment references an instrument in R2 and a provider in R10, and every check reference resolves, once the module that defines them is in the package (§10); each transfer is booked once; statement totals agree with the records behind them; a revenue statement’s period lies within the manifest period, its product code is in the profile’s taxonomy, a correction references an existing statement, a venue count references a venue in R1, and authority_figure_ref resolves to a report reference in R12'],
   ['Profile conformance', 'Does the evidence show the control operated under this jurisdiction’s rules?', 'Checks precede crediting; payouts follow the profile’s closed-loop rule or carry a justification; no credit-funded instrument where credit is prohibited; payout times within the profile’s deadline; coverage at or above the required level; the gaming revenue and levy on each R13 line follow the profile’s formula, base and rate, at the profile’s cut-off and under its bonus rule; the money bridge (§4.13) holds within the profile’s tolerance'],
+  ['Stream', 'Is the stream complete, ordered and intact, and does the period package agree with it?', 'Envelope valid; sequence strictly increasing without gaps or conflicting duplicates; each event validates against its record schema; checkpoints match the events and their hash; emission within the profile’s latency; every streamed record appears in the package in its final state and every package record of a streamed type was streamed; interim statements sum to the period statement within tolerance'],
   ['Completeness', 'Is anything missing that should be there?', 'External movements on inventory locations that appear in no record; rail references the external source does not confirm; funding instruments missing from R2; periods with no statement; differences no exception owns; exceptions open beyond their ageing limit; the venue win in R14 agrees with the R13 venue line; the drop agrees with the bankings in R6 and R7'],
 ], [1900, 2800, 5046], { cantSplit: true }));
 body.push(P('The catalogue of individual checks, their severities, the tolerances that separate a rounding difference from a discrepancy, and the materiality thresholds that make an exception reportable are deliberately not fixed in this Standard. They belong to each authority to set, and they will change more often than the format. They are maintained separately as a versioned conformance suite, so that a package can be tested against a named suite version and a named profile version, and the result reproduced later.'));
 body.push(P('Wherever an independent source exists — the chain for virtual assets, bank and provider statements, an authority’s own central system — completeness is checked against that source and not only against the operator’s account of it.'));
-body.push(P('An open reference validator for the Structural and Referential classes, validator-lite, is published under the Apache License 2.0 at github.com/ctres-standard/validator-lite. Validation under the Profile conformance and Completeness classes depends on the parameters this section leaves to each authority and is provided separately. No validator is a condition of using this Standard; an implementation validated by any other means is equally conformant.'));
+body.push(P('An open reference validator for the Structural and Referential classes, and for the structure, order and checkpoints of a stream and its reconciliation with a package, validator-lite, is published under the Apache License 2.0 at github.com/ctres-standard/validator-lite. Validation under the Profile conformance and Completeness classes depends on the parameters this section leaves to each authority and is provided separately. No validator is a condition of using this Standard; an implementation validated by any other means is equally conformant.'));
 
 // ---------------- 12 ----------------
 body.push(H1('12. Data protection, confidentiality and retention'));
 body.push(BUL('Periodic packages carry pseudonymous player references, masked account numbers and hashed phone numbers. Names, addresses and identity documents are not included.'));
-body.push(BUL('Gaming revenue statements (R13) and venue counts (R14) carry no personal data: they are totals by product, channel, period and unit, and reference no player.'));
+body.push(BUL('Gaming revenue statements (R13) and venue counts (R14) carry no personal data: they are totals by product, channel, period and unit, and reference no player. Bet events (R15) carry the pseudonymous player reference and the money facts of a bet, never game content. A stream carries the same data as a package and no more.'));
 body.push(BUL('Identity data is provided only in an evidence pack answering a specific lawful request, and travels under the same arrangements as existing regulatory correspondence.'));
 body.push(BUL('Retention follows the profile. An operator licensed in several jurisdictions retains for the longest period that applies.'));
 body.push(BUL('Suspicious-report confidentiality is preserved: R12 holds references only and is disclosed only to authorities entitled to see it (§4.12).'));
@@ -489,7 +537,7 @@ body.push(table(['Element', 'Arrangement'], [
   ['Authorities', 'Own their profiles. Corrections an authority makes to its own profile are adopted as submitted.'],
   ['Contributors', 'Operators, suppliers, auditors and associations comment through the public issue tracker at github.com/ctres-standard/spec or to hello@ctres.org. Substantive changes are published for comment before adoption.'],
   ['Versioning', 'Major versions change existing record types or fields; minor versions add record types, fields, rails or profile parameters without changing existing ones; patches correct text. Annex B, the Register of jurisdiction profiles, is published separately as a dated edition: adding or correcting jurisdiction profiles publishes a new Register edition and does not change the version of the Standard. Mapping files and the conformance suite are versioned separately.'],
-  ['Licence', 'The text is licensed under CC BY 4.0. The schema (record types R1–R14, the package manifest and the structure of a jurisdiction profile) and the reference validator for the Structural and Referential classes (§11) are licensed under the Apache License 2.0. Profiles are published in human-readable form in the Register (Annex B) and at ctres.org/profiles/. Anyone may implement the Standard without fee or permission.'],
+  ['Licence', 'The text is licensed under CC BY 4.0. The schema (record types R1–R15, the package manifest, the stream envelope and checkpoint, and the structure of a jurisdiction profile) and the reference validator for the Structural and Referential classes (§11) are licensed under the Apache License 2.0. Profiles are published in human-readable form in the Register (Annex B) and at ctres.org/profiles/. Anyone may implement the Standard without fee or permission.'],
   ['Conformance claims', '“CTRES Conformant” describes an implementation tested against a named conformance suite version. A claim states the suite and profile versions it was tested against.'],
   ['Working group', 'The editor proposes to convene a working group of authorities and practitioners once at least three authorities have reviewed their profiles.'],
 ], [2200, 7546]));
@@ -497,7 +545,7 @@ body.push(table(['Element', 'Arrangement'], [
 // ---------------- 14 ----------------
 body.push(H1('14. Roadmap'));
 body.push(table(['When', 'Step', 'Who'], [
-  ['November 2026', 'Version 1.1: four conformance levels over a core of four records; gaming revenue statements and venue counts; revenue and levy profile parameters; the Register of profiles published separately', 'Editor'],
+  ['November 2026', 'Version 1.1: four conformance levels over a core of four records; gaming revenue statements, venue counts and bet events; revenue and levy profile parameters; streaming mode; the Register of profiles published separately', 'Editor'],
   ['Q4 2026', 'Authorities review their profiles', 'Authorities, editor'],
   ['Q1 2027', 'Pilots with volunteer operators and at least one authority, across three rail mixes and one land-based floor', 'Operators, authorities, editor'],
   ['Q2 2027', 'Version 1.2 with authority-confirmed profiles and the conformance suite versioned alongside', 'Editor'],
@@ -518,12 +566,12 @@ body.push(BUL('May operators refer to this Standard, in the policies and procedu
 
 // ---------------- ANNEX A ----------------
 body.push(H1('Annex A. Field catalogue'));
-body.push(P('The extracts in §4 and §6 are sufficient to build a working implementation of every record type. The complete catalogue adds formats, enumerations, conditional requirements and examples for each field, together with the profile schema, and states for each record type whether it belongs to the core or to a module (§10). It is maintained as a versioned machine-readable schema — JSON Schema for record types R1–R14, the package manifest and the structure of a jurisdiction profile — published under the Apache License 2.0 at github.com/ctres-standard/schema, so that implementations can be tested automatically rather than read.'));
+body.push(P('The extracts in §4 and §6 are sufficient to build a working implementation of every record type. The complete catalogue adds formats, enumerations, conditional requirements and examples for each field, together with the profile schema, and states for each record type whether it belongs to the core or to a module (§10). It is maintained as a versioned machine-readable schema — JSON Schema for record types R1–R15, the package manifest, the stream envelope and checkpoint, and the structure of a jurisdiction profile, with a reference interface for streams — published under the Apache License 2.0 at github.com/ctres-standard/schema, so that implementations can be tested automatically rather than read.'));
 
 // =====================================================================
 // ANNEX B — in the Standard: a pointer to the Register. In the Register (--register): cover + landscape rows.
 body.push(H1('Annex B. Jurisdiction profiles — the Register'));
-body.push(P(`Annex B is the Register of jurisdiction profiles: ${REGISTER_COUNT_WORDS} jurisdictions, read from published sources and re-verified against the primary instruments, summarised to the parameters of §5 and grouped by region, in two parts — Part 1, payments, player funds and reporting; Part 2, revenue and levy — with the principal sources. It is published separately from this text, as CTRES_Register.pdf and CTRES_Register.docx at ctres.org/profiles/, where each jurisdiction also has its own page, in dated editions; the edition current at the date of this text is named on the cover (${REGISTER_EDITION}).`));
+body.push(P(`Annex B is the Register of jurisdiction profiles: ${REGISTER_COUNT_WORDS} jurisdictions, read from published sources and re-verified against the primary instruments, summarised to the parameters of §5 and grouped by region, in three parts — Part 1, payments, player funds and reporting; Part 2, revenue and levy; Part 3, submission and streams — with the principal sources. It is published separately from this text, as CTRES_Register.pdf and CTRES_Register.docx at ctres.org/profiles/, where each jurisdiction also has its own page, in dated editions; the edition current at the date of this text is named on the cover (${REGISTER_EDITION}).`));
 body.push(P('Register editions change as profiles are added or corrected, without changing the version of the Standard (§13). They are a reference, not legal advice. “Not found” means that no published rule was located, not that none exists. Each row is offered to the authority concerned for review, and a corrected row replaces it as submitted; rows marked reviewed carry the authority’s own wording. The machine-readable profile of a jurisdiction (§5, Annex A) is derived from its Register row and is maintained with the authority.'));
 
 const regCover = [];
@@ -541,9 +589,9 @@ if (REGISTER) {
   regCover.push(new Paragraph({ spacing: { after: 320 }, children: [new TextRun({ text: `Annex B of the Common Transaction Reporting and Evidence Standard (${VERSION}) — edition of ${REGISTER_EDITION}`, font: FONT, size: 24, color: '404040' })] }));
   regCover.push(table(['Item', 'Detail'], [
     ['Edition', `${REGISTER_EDITION} — ${REGISTER_COUNT_WORDS} jurisdictions, in four regions`],
-    ['Standard', `${VERSION}, universal edition (4 November 2026) — https://ctres.org/standard/. Register editions are dated and change as profiles are added or corrected, without changing the version of the Standard (§13).`],
+    ['Standard', `${VERSION}, universal edition (5 November 2026) — https://ctres.org/standard/. Register editions are dated and change as profiles are added or corrected, without changing the version of the Standard (§13).`],
     ['Status', 'Published. Profiles are read from published sources and re-verified against the primary instruments, summarised to the parameters of §5 of the Standard, and offered to each authority for review. A profile reviewed with its authority carries the authority’s own wording; corrections an authority makes to its own profile are adopted as submitted. The Register is a reference, not legal advice. “Not found” means that no published rule was located, not that none exists.'],
-    ['Structure', 'Part 1 — payments, player funds and reporting: rails and virtual assets; ownership, closed loop and payouts; thresholds and reports; player funds; reporting and retention. Part 2 — revenue and levy: the levy base and rate, bonus and open-bet rules, period and deadline, and the form or system through which the operator files. Principal sources follow Part 2.'],
+    ['Structure', 'Part 1 — payments, player funds and reporting: rails and virtual assets; ownership, closed loop and payouts; thresholds and reports; player funds; reporting and retention. Part 2 — revenue and levy: the levy base and rate, bonus and open-bet rules, period and deadline, and the form or system through which the operator files. Part 3 — submission and streams: the submission mode the published rules imply, its cadence or latency, the central system, gateway or data vault where one exists and whether it receives bet-level data, and the transport (§8.4). Principal sources follow Part 3.'],
     ['Online', 'https://ctres.org/profiles/ — the same rows, filterable by region, with a page per jurisdiction and its review status'],
     ['Contact', 'hello@ctres.org — corrections from authorities, and comments through github.com/ctres-standard/spec'],
     ['Licence', 'Creative Commons Attribution 4.0 International (CC BY 4.0), as the Standard'],
@@ -584,6 +632,21 @@ if (HAS_ANNEX_B) {
     bodyB.push(P(PART2_PLACEHOLDER, { size: 18 }));
   }
 
+  // Part 3 — submission and streams: the eighth cell of each row (row[7]).
+  if (REGIONS.some(([, rows]) => rows.some((r) => r[7]))) {
+    bodyB.push(BR());
+    bodyB.push(H2('Part 3. Submission and streams'));
+    bodyB.push(P('Part 3 gives, for each jurisdiction, the submission mode the published rules imply — periodic returns or files, a continuous feed to a central system, or both — with the cadence or latency stated, the central system, gateway or data vault by name where one exists and whether it receives bet-level data (the Wagering module, R15) or payments and accounts only, and the transport implied: push to the authority’s system, pull from an operator-hosted vault, the authority’s own protocol, or a form or portal. The vocabulary is that of §5 and §8.4 of the Standard; the profile parameters mode, latency, checkpoint, bet_level and transport are read from this part.', { size: 18 }));
+    REGIONS.forEach(([name, rows]) => {
+      const rows3 = [new TableRow({ tableHeader: true, children: ['Jurisdiction', 'Submission and streams'].map((h, i) => cell(h, BW2[i], { head: true, size: 15 })) }), regionRow(name, 2)];
+      rows.forEach((r, ri) => rows3.push(new TableRow({ cantSplit: true, children: [
+        cell(shortName(r), BW2[0], { alt: ri % 2 === 1, size: 14, bold: true }),
+        cell(r[7] || 'To be published in the next Register edition.', BW2[1], { alt: ri % 2 === 1, size: 14 })] })));
+      bodyB.push(new Table({ columnWidths: BW2, width: { size: WL, type: WidthType.DXA }, rows: rows3 }));
+      bodyB.push(P('', { after: 0 }));
+    });
+  }
+
   bodyB.push(H2('Principal sources'));
   SRC.forEach((s) => bodyB.push(BUL(s, { size: 15 })));
 } else {
@@ -612,6 +675,12 @@ bodyC.push(code('{"count_id":"VC-2026-10-14-V03-SM-0117","venue_id":"V-03","gami
 bodyC.push(P('Venue count (R14), the venue_total row for the same gaming day — the count room against the meters, and the drop banked:'));
 bodyC.push(code('{"count_id":"VC-2026-10-14-V03-TOTAL","venue_id":"V-03","gaming_day":"2026-10-14","unit_type":"venue_total","unit_id":"V-03","currency":"EUR","meter_source":"electronic","hard_count":"402150.00","soft_count":"1186400.00","count_variance":"-310.00","win_declared":"96480.00","win_formula":"profile","drop_deposit_ref":"M-2026-10-15-0007","prepared_by":"count_room","reviewed_by":"finance_ops"}'));
 
+bodyC.push(P('Bet event (R15), a settled sports bet, as it appears in a package — its final state:'));
+bodyC.push(code('{"bet_id":"B-2026-11-05-0918273","player_ref":"P-20931","player_ref_scope":"licence-A","product_line":"sports_fixed_odds","channel":"online","currency":"EUR","stake":"20.00","placed_at":"2026-11-05T18:02:11+01:00","status":"settled","stake_bonus":"0.00","winnings":"46.00","settled_at":"2026-11-05T21:47:30+01:00","jurisdiction_category":"betting","game_ref":"EV-55120/M-3","odds":"2.30","ledger_entry_refs":["L-552031","L-552870"],"evidence_ref":"PAM-BET-2026-11-05"}'));
+bodyC.push(P('The same bet in a stream — first as placed (op create), then re-emitted when settled (op update); the envelope is §8.4:'));
+bodyC.push(code('{"stream_id":"LIC-A:R15","sequence":881204,"emitted_at":"2026-11-05T18:02:12+01:00","licence_number":"LIC-A","standard_version":"1.1","record_type":"R15","op":"create","record":{"bet_id":"B-2026-11-05-0918273","player_ref":"P-20931","player_ref_scope":"licence-A","product_line":"sports_fixed_odds","channel":"online","currency":"EUR","stake":"20.00","placed_at":"2026-11-05T18:02:11+01:00","status":"open","odds":"2.30","game_ref":"EV-55120/M-3"}}'));
+bodyC.push(code('{"stream_id":"LIC-A:R15","sequence":884517,"emitted_at":"2026-11-05T21:47:31+01:00","licence_number":"LIC-A","standard_version":"1.1","record_type":"R15","op":"update","record":{"bet_id":"B-2026-11-05-0918273","player_ref":"P-20931","player_ref_scope":"licence-A","product_line":"sports_fixed_odds","channel":"online","currency":"EUR","stake":"20.00","placed_at":"2026-11-05T18:02:11+01:00","status":"settled","stake_bonus":"0.00","winnings":"46.00","settled_at":"2026-11-05T21:47:30+01:00","jurisdiction_category":"betting","game_ref":"EV-55120/M-3","odds":"2.30","ledger_entry_refs":["L-552031","L-552870"],"evidence_ref":"PAM-BET-2026-11-05"}}'));
+
 bodyC.push(H1('Annex D. Conformance declaration (template)'));
 bodyC.push(P('For signature by the operator’s responsible officer.'));
 bodyC.push(table(['Item', 'Entry'], [
@@ -623,7 +692,8 @@ bodyC.push(table(['Item', 'Entry'], [
   ['Custody models in use', 'direct / omnibus_at_provider / hybrid, per location type'],
   ['Where the records are held', 'System location, and the arrangement relied upon for any data-location rule'],
   ['Declared conformance level', 'level_1 Return / level_2 Evidence / level_3 Custody / level_4 Supervision (§10)'],
-  ['Record types produced', 'The records of the declared level, and any further record types produced, with reasons for any omission'],
+  ['Submission mode and streams', 'periodic package / continuous / both (§8.1); stream identifiers and checkpoint cadence where records are streamed (§8.4)'],
+  ['Record types produced', 'The records of the declared level, and any further record types produced (R14, R15 and the modules), with reasons for any omission'],
   ['Revenue statements and venue counts', 'R13 per product line, channel and currency, with the GGR formula and levy base applied; R14 per venue, where the licence covers venues; or not applicable, with the reason'],
   ['Check providers and registers used', ''],
   ['Conformance suite version tested against', ''],
@@ -641,6 +711,11 @@ bodyC.push(table(['Term', 'Meaning in this Standard'], [
   ['Core', 'The package manifest with R3, R4, R7 and R13 — the records every package carries from Level 2.'],
   ['Module', 'A group of record types added by a conformance level: Custody (R1, R2, R6, R10, R11), Supervision (R5, R8, R9, R12), Venue (R14).'],
   ['Conformance level', 'One of four minimum record sets an operator declares for a package (§10): Return, Evidence, Custody, Supervision.'],
+  ['Bet event', 'An R15 record: the money facts of one bet, round, ticket or hand — stake, winnings, status and times — never its content.'],
+  ['Stream', 'The delivery of records as events, one per line, as they occur or at the cadence the profile sets (§8.4), with sequence numbers and checkpoints.'],
+  ['Event', 'A record in a stream envelope: stream, sequence, time of emission, record type and operation (create, update, void).'],
+  ['Checkpoint', 'A statement of a stream for a gaming day — first and last sequence, event count and the hash of the event lines — emitted in the stream and listed in the period package.'],
+  ['Interim statement', 'An R13 statement for an hour or a day, emitted in a stream and superseded by the statement for the period.'],
   ['Closed loop', 'The rule that a payout returns to the instrument, or to an instrument of the same holder, from which the player funded the account.'],
   ['Coverage', 'The relationship between total player liabilities and the funds held to meet them.'],
   ['Rail reference', 'The identifier a payment rail issues for a payment.'],
@@ -689,6 +764,6 @@ const doc = new Document({
   ],
 });
 
-if (HAS_ANNEX_B && JURISDICTION_COUNT !== 90) throw new Error('count '+JURISDICTION_COUNT);
+if (HAS_ANNEX_B && JURISDICTION_COUNT !== REGISTER_COUNT) throw new Error('count '+JURISDICTION_COUNT);
 if (REGISTER && !HAS_ANNEX_B) console.log('annex_b_data.js not found: Register built with a placeholder');
 Packer.toBuffer(doc).then((buf) => { fs.writeFileSync(OUT, buf); console.log('written', OUT); });

@@ -16,7 +16,7 @@ Use synthetic values, in the style of Annex C, for any example.
 <!-- For example: §4.2, field holder_match; §11, table of classes; Annex C, second example. -->
 
 **Edition and version**
-CTRES v1.1, universal edition, 4 November 2026
+CTRES v1.1, universal edition, 5 November 2026
 
 **Current text**
 <!-- Quote the relevant words briefly. -->

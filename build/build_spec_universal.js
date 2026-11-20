@@ -15,7 +15,7 @@ const WM = fs.readFileSync(path.join(__dirname, 'assets', 'watermark.png'));
 
 const REGISTER = process.argv.includes('--register');
 const OUT = process.argv.filter((a) => a !== '--register')[2] || (REGISTER ? 'CTRES_Register.docx' : 'CTRES_v1.1.docx');
-const REGISTER_EDITION = '5 November 2026';
+const REGISTER_EDITION = '20 November 2026';
 const REGISTER_COUNT_WORDS = 'ninety-seven';
 const REGISTER_COUNT = 97;
 const FONT = 'Arial';

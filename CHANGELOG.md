@@ -2,6 +2,15 @@
 
 Changes to the text of the Common Transaction Reporting and Evidence Standard (CTRES), most recent first. Section numbers refer to the edition named in each entry.
 
+## 1.1, Register edition of 20 November 2026 (release v1.1.2)
+
+- Register, Bosnia and Herzegovina: the Federation part is reviewed with the Federal Ministry of Finance of the Federation of Bosnia and Herzegovina, and the Ministry's wording is adopted as submitted in the six cells of Part 1: payment methods for land-based and online betting, payout on written request within three days, one account per player, identification before registration without uploading identity documents, the thresholds of the State AML Law, guarantees of KM 1,000,000, 800,000 and 600,000, separate bank accounts for players' funds, and the online connection to the Tax Administration by sector.
+- Register, Finland: the row is reviewed with Poliisihallitus's Gambling Administration. Playing or paying with virtual assets is not allowed under the Lotteries Act or the Gambling Act; payment blocking of listed operators continues until the Gambling Act comes into effect; the self-exclusion register starts on 1 July 2027 and a self-exclusion may be shorter than one year.
+- Register, South Africa: the Western Cape part is reviewed with the Western Cape Gambling and Racing Board. Third-party payouts are barred under licence terms; there is no requirement to hold players' funds separately, and each bookmaker lodges a security deposit that is recalculated every year; rule 17(3) is being amended and the Board intends to introduce its own system for the collection of taxes.
+- Register, Sweden: the contact duty on deposit limits, the purpose of separating player funds and the Spelpaus checks are given with their legal bases.
+- Register, Germany: the limit file is queried before every deposit and the activity file before the first participation in play with an operator.
+- Ninety-seven jurisdictions, unchanged. No change to the text of the Standard, the record model or the schema.
+
 ## 1.1, editorial revision, 6 November 2026 (release v1.1.1)
 
 - Punctuation only: typographic dashes replaced by plain ones throughout the Standard, the Register, the repositories and the site; the name and authority of a Register row are now separated by a colon. No change to the text's meaning, the record model, the schema or the profiles.
